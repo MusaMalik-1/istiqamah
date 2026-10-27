@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="amethyst">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Istiqamah: Daily prayer and habit checklist for Windows</title>
+  <meta name="description" content="Istiqamah is a calm, distraction-free daily prayer and habit companion for Windows. Five daily prayers tracker, custom habits, streaks, history, and accountability. Free. No ads.">
+  <meta name="theme-color" content="#09090d">
+  
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Istiqamah: Daily prayer and habit checklist for Windows">
+  <meta property="og:description" content="A daily prayer and habit companion for Windows. Free. No ads. Consistency in every day.">
+  <meta property="og:image" content="assets/icon.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Istiqamah: Daily prayer and habit checklist for Windows">
+  <meta name="twitter:description" content="A daily prayer and habit companion for Windows. Free. No ads. Consistency in every day.">
+  <meta name="twitter:image" content="assets/icon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+
+  <!-- Fonts: Plus Jakarta Sans for modern clean typography & Amiri for Arabic script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Ambient Aurora & Subtle Grain -->
+  <div class="ambient-aurora" aria-hidden="true"></div>
+  <svg class="ambient-noise" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.035 0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+  </svg>
+
+  <!-- 1. STICKY NAVIGATION -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-container">
+      <a href="#" class="brand-link" aria-label="Istiqamah Home">
+        <img src="assets/icon.png" alt="Istiqamah logo" class="brand-icon-img" width="32" height="32">
+        <span class="brand-name">Istiqamah</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#themes" class="nav-link">Themes</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- CHANGE THIS: Replace DOWNLOAD_URL_WINDOWS_HERE with your real installer link -->
+        <a href="DOWNLOAD_URL_WINDOWS_HERE" class="btn-nav">
+          <span>Download</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="section-container hero-content">
+        
+        <div class="hero-badge reveal">
+          <span class="badge-dot" aria-hidden="true"></span>
+          <span>Free for Windows</span>
+        </div>
+
+        <h1 class="hero-title reveal">
+          Consistency in every day.
+        </h1>
+
+        <p class="hero-sub reveal">
+          A calm daily prayer and habit companion for Windows. Built for quiet focus, daily reflection, and steady devotion.
+        </p>
+
+        <div class="hero-cta-group reveal">
+          <!-- CHANGE THIS: Replace DOWNLOAD_URL_WINDOWS_HERE with your real installer link -->
+          <a href="DOWNLOAD_URL_WINDOWS_HERE" class="btn-primary btn-large">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download for Windows</span>
+          </a>
+
+          <a href="#demo" class="btn-secondary btn-large">
+            <span>Try the tracker</span>
+            <svg class="btn-svg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
+        </div>
+
+        <p class="hero-meta reveal">
+          <span>Free. No ads.</span>
+          <span class="meta-dot" aria-hidden="true">•</span>
+          <span>Windows 10 & 11</span>
+        </p>
+
+        <!-- Decorative Stylized CSS Mockup Window -->
+        <div class="hero-mockup-wrapper reveal" id="heroMockupWrapper">
+          <div class="mockup-window" id="heroMockupWindow">
+            <div class="mockup-titlebar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="dot dot-close"></span>
+                <span class="dot dot-min"></span>
+                <span class="dot dot-max"></span>
+              </div>
+              <div class="mockup-window-title">Istiqamah</div>
+              <div class="titlebar-placeholder" aria-hidden="true"></div>
+            </div>
+
+            <div class="mockup-body">
+              <!-- Faux Sidebar -->
+              <aside class="mockup-sidebar" aria-hidden="true">
+                <div class="mockup-nav-item active">
+                  <svg class="mock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                  <span>Today</span>
+                </div>
+                <div class="mockup-nav-item">
+                  <svg class="mock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                  <span>History</span>
+                </div>
+                <div class="mockup-nav-item">
+                  <svg class="mock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span>Friends</span>
+                </div>
+                <div class="mockup-nav-item">
+                  <svg class="mock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><circle cx="12" cy="12" r="4"/></svg>
+                  <span>Quiz</span>
+                </div>
+                <div class="mockup-nav-item">
+                  <svg class="mock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.5"/><polyline points="16 3 21 8 16 8"/><line x1="9" x2="15" y1="13" y2="13"/></svg>
+                  <span>Audit</span>
+                </div>
+              </aside>
+
+              <!-- Faux Content Area -->
+              <div class="mockup-main">
+                <div class="mockup-header-row">
+                  <div>
+                    <h3 class="mockup-greeting">Good evening</h3>
+                    <p class="mockup-date">Tuesday, October 27</p>
+                  </div>
+                  <div class="mockup-streak-pill">
+                    <svg class="flame-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></svg>
+                    <span>7 day streak</span>
+                  </div>
+                </div>
+
+                <!-- Mini Progress Summary Card -->
+                <div class="mockup-summary-card">
+                  <div class="mockup-ring-wrap">
+                    <svg class="mockup-ring-svg" viewBox="0 0 60 60">
+                      <circle class="ring-bg" cx="30" cy="30" r="24" />
+                      <circle class="ring-fill" cx="30" cy="30" r="24" stroke-dasharray="150.79" stroke-dashoffset="37.69" />
+                    </svg>
+                    <span class="mockup-ring-text">75%</span>
+                  </div>
+                  <div class="mockup-summary-text">
+                    <span class="summary-kicker">STEADY FOCUS</span>
+                    <h4 class="summary-headline">4 of 5 prayers fulfilled today</h4>
+                    <p class="summary-sub">Consistency in small deeds leads to great steadiness.</p>
+                  </div>
+                </div>
+
+                <!-- Mini Habit Rows -->
+                <div class="mockup-habit-rows" aria-hidden="true">
+                  <div class="mock-habit-row done">
+                    <span class="mock-checkbox done">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <span class="mock-habit-title">Fajr in congregation</span>
+                    <span class="mock-habit-tag">Prayer</span>
+                  </div>
+                  <div class="mock-habit-row done">
+                    <span class="mock-checkbox done">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <span class="mock-habit-title">Morning Adhkar & Surah Al-Mulk</span>
+                    <span class="mock-habit-tag">Quran</span>
+                  </div>
+                  <div class="mock-habit-row">
+                    <span class="mock-checkbox"></span>
+                    <span class="mock-habit-title">Evening reflection & gratitude</span>
+                    <span class="mock-habit-tag">Accountability</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SIGNATURE INTERACTIVE DEMO ("Try it") -->
+    <section class="demo-section" id="demo">
+      <div class="section-container">
+        
+        <div class="section-header text-center reveal">
+          <span class="section-kicker">INTERACTIVE PREVIEW</span>
+          <h2 class="section-title">The Five Daily Prayers</h2>
+          <p class="section-sub">Experience the quiet rhythm of the prayer tracker. Click each prayer node to mark it complete.</p>
+        </div>
+
+        <div class="interactive-demo-card reveal" id="interactiveDemoCard">
+          
+          <div class="demo-card-top">
+            <div class="demo-ring-group">
+              <svg class="demo-svg-ring" viewBox="0 0 64 64" aria-hidden="true">
+                <circle class="demo-ring-track" cx="32" cy="32" r="26"></circle>
+                <circle class="demo-ring-bar" id="demoRingBar" cx="32" cy="32" r="26" stroke-dasharray="163.36" stroke-dashoffset="163.36"></circle>
+              </svg>
+              <div class="demo-ring-stat">
+                <span class="demo-percent-text" id="demoPercentText">0%</span>
+                <span class="demo-percent-label">COMPLETED</span>
+              </div>
+            </div>
+
+            <div class="demo-meta-badges">
+              <span class="demo-status-pill" id="demoDoneCounter">0 of 5 done</span>
+              <button type="button" class="btn-demo-reset" id="btnDemoReset" title="Reset interactive demo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                <span>Reset</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Connected 5-Prayer Timeline Nodes -->
+          <div class="prayer-timeline-wrapper" role="group" aria-label="Five Daily Prayers Tracker">
+            <div class="prayer-track-line" aria-hidden="true">
+              <div class="prayer-track-fill" id="prayerTrackFill"></div>
+            </div>
+
+            <div class="prayer-nodes-row">
+              
+              <!-- 1. Fajr -->
+              <button type="button" class="prayer-node-btn" data-prayer="fajr" data-index="0" aria-pressed="false" id="prayerNodeFajr">
+                <div class="node-circle">
+                  <span class="node-letter" aria-hidden="true">F</span>
+                  <svg class="node-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span class="prayer-name">Fajr</span>
+                <span class="prayer-time-sub">Dawn</span>
+              </button>
+
+              <!-- 2. Dhuhr -->
+              <button type="button" class="prayer-node-btn" data-prayer="dhuhr" data-index="1" aria-pressed="false" id="prayerNodeDhuhr">
+                <div class="node-circle">
+                  <span class="node-letter" aria-hidden="true">D</span>
+                  <svg class="node-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span class="prayer-name">Dhuhr</span>
+                <span class="prayer-time-sub">Noon</span>
+              </button>
+
+              <!-- 3. Asr -->
+              <button type="button" class="prayer-node-btn" data-prayer="asr" data-index="2" aria-pressed="false" id="prayerNodeAsr">
+                <div class="node-circle">
+                  <span class="node-letter" aria-hidden="true">A</span>
+                  <svg class="node-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span class="prayer-name">Asr</span>
+                <span class="prayer-time-sub">Afternoon</span>
+              </button>
+
+              <!-- 4. Maghrib -->
+              <button type="button" class="prayer-node-btn" data-prayer="maghrib" data-index="3" aria-pressed="false" id="prayerNodeMaghrib">
+                <div class="node-circle">
+                  <span class="node-letter" aria-hidden="true">M</span>
+                  <svg class="node-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span class="prayer-name">Maghrib</span>
+                <span class="prayer-time-sub">Sunset</span>
+              </button>
+
+              <!-- 5. Isha -->
+              <button type="button" class="prayer-node-btn" data-prayer="isha" data-index="4" aria-pressed="false" id="prayerNodeIsha">
+                <div class="node-circle">
+                  <span class="node-letter" aria-hidden="true">I</span>
+                  <svg class="node-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span class="prayer-name">Isha</span>
+                <span class="prayer-time-sub">Night</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Calm Dynamic Message Box -->
+          <div class="demo-feedback-box">
+            <svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="M2 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="M12 22v-4"/><path d="m19.07 19.07-2.83-2.83"/><path d="M22 12h-4"/><path d="m19.07 4.93-2.83 2.83"/>
+            </svg>
+            <p class="demo-feedback-text" id="demoFeedbackMessage">
+              Begin your day with purpose.
+            </p>
+          </div>
+
+          <!-- Voluntary Extras Sub-row -->
+          <div class="demo-voluntary-wrap">
+            <span class="voluntary-title">Voluntary Prayers</span>
+            <div class="voluntary-chips">
+              <button type="button" class="v-chip" data-v="sunnah" aria-pressed="false">Sunnah</button>
+              <button type="button" class="v-chip" data-v="witr" aria-pressed="false">Witr</button>
+              <button type="button" class="v-chip" data-v="tahajjud" aria-pressed="false">Tahajjud</button>
+              <button type="button" class="v-chip" data-v="duha" aria-pressed="false">Duha</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. FEATURES BENTO GRID -->
+    <section class="features-section" id="features">
+      <div class="section-container">
+        
+        <div class="section-header text-center reveal">
+          <span class="section-kicker">ENGINEERED FOR STEADINESS</span>
+          <h2 class="section-title">Everything you need. Nothing in the way.</h2>
+          <p class="section-sub">A focused toolkit designed around spiritual grounding and daily personal accountability.</p>
+        </div>
+
+        <div class="bento-grid">
+          
+          <!-- Card 1: Five Daily Prayers (Wide - span 8) -->
+          <article class="bento-card bento-span-8 reveal">
+            <div class="bento-inner">
+              <div class="bento-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+              </div>
+              <h3 class="bento-title">Five Daily Prayers</h3>
+              <p class="bento-desc">Connected progress for Fajr, Dhuhr, Asr, Maghrib, and Isha. Expandable sections let you track Sunnah prayers, Witr, Tahajjud, and Duha with a single click.</p>
+              
+              <!-- Mini CSS Visual: Timeline with active nodes -->
+              <div class="mini-widget mini-prayers-widget" aria-hidden="true">
+                <div class="mini-track"></div>
+                <div class="mini-node done"><span>F</span></div>
+                <div class="mini-node done"><span>D</span></div>
+                <div class="mini-node done"><span>A</span></div>
+                <div class="mini-node"><span>M</span></div>
+                <div class="mini-node"><span>I</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Streaks (Compact - span 4) -->
+          <article class="bento-card bento-span-4 reveal">
+            <div class="bento-inner">
+              <div class="bento-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></svg>
+              </div>
+              <h3 class="bento-title">Steadiness Streaks</h3>
+              <p class="bento-desc">Celebrate genuine continuity without guilt. Tracks your current and best streak every time all required habits are completed.</p>
+
+              <!-- Mini CSS Visual: Glowing streak flame -->
+              <div class="mini-widget mini-streak-widget" aria-hidden="true">
+                <div class="streak-flame-circle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></svg>
+                </div>
+                <div class="streak-digits">
+                  <span class="streak-num">14</span>
+                  <span class="streak-unit">DAYS STEADY</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: History & Heatmap Calendar (Wide - span 8) -->
+          <article class="bento-card bento-span-8 reveal">
+            <div class="bento-inner">
+              <div class="bento-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+              </div>
+              <h3 class="bento-title">History & Heatmap Calendar</h3>
+              <p class="bento-desc">A visual record of your steadfastness across every month. Each day is color-coded as none, partial, or complete so you can review your momentum at a glance.</p>
+
+              <!-- Mini CSS Visual: 4-week calendar heatmap -->
+              <div class="mini-widget mini-calendar-widget" aria-hidden="true">
+                <div class="cal-week-labels">
+                  <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                </div>
+                <div class="cal-grid-dots">
+                  <span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot mid"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span>
+                  <span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot mid"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span>
+                  <span class="cal-dot mid"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot mid"></span>
+                  <span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot full"></span><span class="cal-dot today"></span>
+                </div>
+                <div class="cal-legend">
+                  <span class="leg-item"><span class="leg-dot full"></span> Complete</span>
+                  <span class="leg-item"><span class="leg-dot mid"></span> Partial</span>
+                  <span class="leg-item"><span class="leg-dot none"></span> Rest</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Daily Checklist (Compact - span 4) -->
+          <article class="bento-card bento-span-4 reveal">
+            <div class="bento-inner">
+              <div class="bento-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <h3 class="bento-title">Categorized Habits</h3>
+              <p class="bento-desc">Organized into Prayers, Quran & Dhikr, Health with a water intake counter, Study & Work, and Home. Mark habits as required or optional.</p>
+
+              <!-- Mini CSS Visual: Checklist chips -->
+              <div class="mini-widget mini-checklist-widget" aria-hidden="true">
+                <div class="mini-check-pill done">
+                  <span class="mini-tick">✓</span>
+                  <span>Read 1 Hizb Quran</span>
+                  <span class="mini-tag">Daily</span>
+                </div>
+                <div class="mini-check-pill done">
+                  <span class="mini-tick">✓</span>
+                  <span>Hydration: 6 of 8 glasses</span>
+                  <span class="mini-tag">Water</span>
+                </div>
+                <div class="mini-check-pill">
+                  <span class="mini-box"></span>
+                  <span>Deep work sprint (90m)</span>
+                  <span class="mini-tag">Work</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Hikmah Quiz (Balanced - span 6) -->
+          <article class="bento-card bento-span-6 reveal">
+            <div class="bento-inner">
+              <div class="bento-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><circle cx="12" cy="12" r="4"/></svg>
+              </div>
+              <h3 class="bento-title">Hikmah Quiz</h3>
+              <p class="bento-desc">A 5-question daily Islamic knowledge challenge with a 15-second timer, randomized option layouts, speed bonuses, and streak records.</p>
+
+              <!-- Mini CSS Visual: Quiz timer countdown -->
+              <div class="mini-widget mini-quiz-widget" aria-hidden="true">
+                <div class="quiz-timer-pill">
+                  <span class="timer-live-dot"></span>
+                  <span>14s left</span>
+                  <span class="bonus-tag">+50 Speed Bonus</span>
+                </div>
+                <div class="quiz-score-preview">
+                  <span class="quiz-pts">650</span>
+                  <span class="quiz-pts-lbl">POINTS TODAY</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: Friends & Community (Balanced - span 6) -->
+          <article class="bento-card bento-span-6 reveal">
+            <div class="bento-inner">
+              <div class="bento-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="bento-title">Friends & Community</h3>
+              <p class="bento-desc">Share unique Friend Codes with your peers. Keep each other motivated and compare quiz scores and daily completion percentages on a private leaderboard.</p>
+
+              <!-- Mini CSS Visual: Mini Leaderboard -->
+              <div class="mini-widget mini-friends-widget" aria-hidden="true">
+                <div class="leader-row first">
+                  <span class="leader-rank">1</span>
+                  <span class="leader-name">Moosa</span>
+                  <span class="leader-pts">740 pts</span>
+                </div>
+                <div class="leader-row">
+                  <span class="leader-rank">2</span>
+                  <span class="leader-name">Hamza</span>
+                  <span class="leader-pts">680 pts</span>
+                </div>
+                <div class="leader-row">
+                  <span class="leader-rank">3</span>
+                  <span class="leader-name">Zayn</span>
+                  <span class="leader-pts">590 pts</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7: Accountability / Muhasabah (Balanced - span 6) -->
+          <article class="bento-card bento-span-6 reveal">
+            <div class="bento-inner">
+              <div class="bento-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <h3 class="bento-title">Accountability (Muhasabah)</h3>
+              <p class="bento-desc">A guided daily self-audit to reflect on sincerity, speech, and time stewardship, paired with an automated monthly reflection summary.</p>
+
+              <!-- Mini CSS Visual: 3 Reflection Chips -->
+              <div class="mini-widget mini-audit-widget" aria-hidden="true">
+                <div class="audit-chip">
+                  <span class="audit-num">01</span>
+                  <span>Sincerity of Intention</span>
+                </div>
+                <div class="audit-chip">
+                  <span class="audit-num">02</span>
+                  <span>Guarding the Tongue</span>
+                </div>
+                <div class="audit-chip">
+                  <span class="audit-num">03</span>
+                  <span>Mindful Stewardship</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 8: Custom Habits (Balanced - span 6) -->
+          <article class="bento-card bento-span-6 reveal">
+            <div class="bento-inner">
+              <div class="bento-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </div>
+              <h3 class="bento-title">Custom Habits</h3>
+              <p class="bento-desc">Adapt the tracker to your personal routine. Add, edit, delete, and reorder habits across any category with clean, fluid controls.</p>
+
+              <!-- Mini CSS Visual: Reorder handles & add chip -->
+              <div class="mini-widget mini-custom-widget" aria-hidden="true">
+                <div class="mini-handle-row">
+                  <span class="drag-handle">⠿</span>
+                  <span>10 pages Islamic reading</span>
+                </div>
+                <div class="mini-handle-row">
+                  <span class="drag-handle">⠿</span>
+                  <span>Morning walk (20m)</span>
+                </div>
+                <div class="mini-add-button">+ Add New Habit</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. THEMES SECTION ("Make it yours") -->
+    <section class="themes-section" id="themes">
+      <div class="section-container">
+        
+        <div class="section-header text-center reveal">
+          <span class="section-kicker">PERSONALIZATION</span>
+          <h2 class="section-title">Make it yours.</h2>
+          <p class="section-sub">Six handcrafted accent palettes crafted on deep dark surfaces. Click any swatch to see the entire website transform live.</p>
+        </div>
+
+        <div class="theme-swatches-grid reveal" role="radiogroup" aria-label="Accent Color Themes">
+          
+          <!-- Theme 1: Amethyst -->
+          <button type="button" class="swatch-btn active" data-theme-choice="amethyst" role="radio" aria-checked="true" aria-label="Amethyst Theme (Purple)">
+            <span class="swatch-circle swatch-amethyst"></span>
+            <div class="swatch-info">
+              <span class="swatch-name">Amethyst</span>
+              <span class="swatch-desc">Purple & Black</span>
+            </div>
+            <span class="swatch-status" aria-hidden="true">Active</span>
+          </button>
+
+          <!-- Theme 2: Rose -->
+          <button type="button" class="swatch-btn" data-theme-choice="rose" role="radio" aria-checked="false" aria-label="Rose Theme (Pink)">
+            <span class="swatch-circle swatch-rose"></span>
+            <div class="swatch-info">
+              <span class="swatch-name">Rose</span>
+              <span class="swatch-desc">Pink & Black</span>
+            </div>
+            <span class="swatch-status" aria-hidden="true">Select</span>
+          </button>
+
+          <!-- Theme 3: Emerald -->
+          <button type="button" class="swatch-btn" data-theme-choice="emerald" role="radio" aria-checked="false" aria-label="Emerald Theme (Green)">
+            <span class="swatch-circle swatch-emerald"></span>
+            <div class="swatch-info">
+              <span class="swatch-name">Emerald</span>
+              <span class="swatch-desc">Green & Black</span>
+            </div>
+            <span class="swatch-status" aria-hidden="true">Select</span>
+          </button>
+
+          <!-- Theme 4: Crimson -->
+          <button type="button" class="swatch-btn" data-theme-choice="crimson" role="radio" aria-checked="false" aria-label="Crimson Theme (Red)">
+            <span class="swatch-circle swatch-crimson"></span>
+            <div class="swatch-info">
+              <span class="swatch-name">Crimson</span>
+              <span class="swatch-desc">Red & Black</span>
+            </div>
+            <span class="swatch-status" aria-hidden="true">Select</span>
+          </button>
+
+          <!-- Theme 5: Ocean -->
+          <button type="button" class="swatch-btn" data-theme-choice="ocean" role="radio" aria-checked="false" aria-label="Ocean Theme (Blue)">
+            <span class="swatch-circle swatch-ocean"></span>
+            <div class="swatch-info">
+              <span class="swatch-name">Ocean</span>
+              <span class="swatch-desc">Blue & Black</span>
+            </div>
+            <span class="swatch-status" aria-hidden="true">Select</span>
+          </button>
+
+          <!-- Theme 6: Sahara -->
+          <button type="button" class="swatch-btn" data-theme-choice="sahara" role="radio" aria-checked="false" aria-label="Sahara Theme (Gold)">
+            <span class="swatch-circle swatch-sahara"></span>
+            <div class="swatch-info">
+              <span class="swatch-name">Sahara</span>
+              <span class="swatch-desc">Gold & Black</span>
+            </div>
+            <span class="swatch-status" aria-hidden="true">Select</span>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. HOW IT WORKS -->
+    <section class="steps-section" id="how-it-works">
+      <div class="section-container">
+        
+        <div class="section-header text-center reveal">
+          <span class="section-kicker">GETTING STARTED</span>
+          <h2 class="section-title">Up and running in seconds</h2>
+          <p class="section-sub">No complex setups, cloud sign-ups, or credit cards required.</p>
+        </div>
+
+        <div class="steps-grid">
+          
+          <div class="step-card reveal">
+            <div class="step-num-pill">01</div>
+            <div class="step-illustration" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="8" width="36" height="26" rx="4"></rect>
+                <path d="M18 40h12"></path>
+                <path d="M24 34v6"></path>
+                <path d="M24 16v10m-4-4 4 4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="step-title">Download</h3>
+            <p class="step-desc">Get the lightweight installer directly from GitHub Releases. Clean, lightweight, and virus-scanned.</p>
+          </div>
+
+          <div class="step-card reveal">
+            <div class="step-num-pill">02</div>
+            <div class="step-illustration" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M24 4v8"></path>
+                <path d="M40 24h-8"></path>
+                <path d="M24 44v-8"></path>
+                <path d="M8 24h8"></path>
+                <circle cx="24" cy="24" r="10"></circle>
+                <polyline points="21 24 23 26 27 22"></polyline>
+              </svg>
+            </div>
+            <h3 class="step-title">Install</h3>
+            <p class="step-desc">Run the setup file. Your habits and checklist are stored directly on your own computer with zero cloud requirements.</p>
+          </div>
+
+          <div class="step-card reveal">
+            <div class="step-num-pill">03</div>
+            <div class="step-illustration" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="24" cy="24" r="16"></circle>
+                <path d="M24 14v10l6 4"></path>
+                <path d="M38 10l4-4"></path>
+              </svg>
+            </div>
+            <h3 class="step-title">Start your day</h3>
+            <p class="step-desc">Check your first prayer, complete your morning routine, and let quiet consistency build lifelong habits.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. DOWNLOAD SECTION -->
+    <section class="download-section" id="download">
+      <div class="section-container">
+        
+        <div class="download-card reveal">
+          <div class="download-card-glow" aria-hidden="true"></div>
+          
+          <div class="download-badge">FREE & OPEN</div>
+          <h2 class="download-title">Begin your journey to consistency.</h2>
+          <p class="download-sub">A focused desktop environment with zero ads, subscriptions, or intrusive notifications.</p>
+
+          <div class="download-actions">
+            <!-- CHANGE THIS: Replace DOWNLOAD_URL_WINDOWS_HERE with your real GitHub release link -->
+            <a href="DOWNLOAD_URL_WINDOWS_HERE" class="btn-primary btn-large btn-download-main">
+              <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download for Windows</span>
+            </a>
+
+            <button type="button" class="btn-disabled btn-large" disabled aria-disabled="true">
+              <span>macOS: coming soon</span>
+            </button>
+          </div>
+
+          <!-- CHANGE THIS: Replace VERSION_HERE with your app version number (e.g. 1.2.3) -->
+          <p class="download-meta-text">
+            Version VERSION_HERE • Windows 10 and 11 • Free
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. INSTALLING HELP (SmartScreen) -->
+    <section class="install-help-section" id="install-help">
+      <div class="section-container">
+        
+        <div class="help-card reveal">
+          <div class="help-card-header">
+            <div class="help-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                <path d="M9 17V7h4a3 3 0 0 1 0 6H9"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="help-kicker">WINDOWS SMARTSCREEN NOTE</span>
+              <h3 class="help-title">First-time installation help</h3>
+            </div>
+          </div>
+
+          <p class="help-intro">
+            Because Istiqamah is a brand new, free, independent application, Windows may display a blue dialog stating <strong>"Windows protected your PC"</strong>. This is normal Microsoft behavior for new software that has not yet accumulated thousands of downloads.
+          </p>
+
+          <div class="help-steps-row">
+            <div class="help-step-item">
+              <span class="help-num">1</span>
+              <div class="help-step-text">
+                <strong>Click "More info"</strong>
+                <p>On the blue SmartScreen window, click the small underline link labeled <em>More info</em>.</p>
+              </div>
+            </div>
+
+            <div class="help-step-item">
+              <span class="help-num">2</span>
+              <div class="help-step-text">
+                <strong>Click "Run anyway"</strong>
+                <p>A second button will appear at the bottom right. Click <em>Run anyway</em> to begin setup.</p>
+              </div>
+            </div>
+
+            <div class="help-step-item">
+              <span class="help-num">3</span>
+              <div class="help-step-text">
+                <strong>Enjoy Istiqamah</strong>
+                <p>The installer completes in seconds. The prompt only appears once during initial installation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. FAQ ACCORDION -->
+    <section class="faq-section" id="faq">
+      <div class="section-container">
+        
+        <div class="section-header text-center reveal">
+          <span class="section-kicker">QUESTIONS & ANSWERS</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-sub">Everything you need to know about the app, storage, and features.</p>
+        </div>
+
+        <div class="faq-accordion-wrap reveal">
+          
+          <!-- FAQ 1: Free -->
+          <details class="faq-item" name="faq-group">
+            <summary class="faq-summary">
+              <span class="faq-question">Is Istiqamah really free?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer-inner">
+              <p>Yes, completely free. There are no advertisements, paid tiers, subscriptions, or hidden charges. The application was built to be a simple, sincere tool for daily personal consistency.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 2: Privacy / Storage -->
+          <details class="faq-item" name="faq-group">
+            <summary class="faq-summary">
+              <span class="faq-question">Where is my data stored?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer-inner">
+              <!-- CHANGE THIS: Replace with your specific statement about data and internet use -->
+              <p>Your checklist and history are stored on your own computer.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 3: Mac / Phone -->
+          <details class="faq-item" name="faq-group">
+            <summary class="faq-summary">
+              <span class="faq-question">Does it work on Mac, Linux, or mobile?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer-inner">
+              <p>Istiqamah is currently optimized specifically for Windows 10 and 11 desktop and laptop computers. A native macOS build is planned for a future release.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 4: Friends & Quiz -->
+          <details class="faq-item" name="faq-group">
+            <summary class="faq-summary">
+              <span class="faq-question">How do the Friends leaderboard and Hikmah Quiz work?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer-inner">
+              <p>Each user gets a private 8-character Friend Code (e.g. <code>IST-WPU4</code>). Sharing your code lets friends compare daily progress percentages, streaks, and scores from the daily 5-question Hikmah Quiz on a clean leaderboard.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 5: Uninstall -->
+          <details class="faq-item" name="faq-group">
+            <summary class="faq-summary">
+              <span class="faq-question">How do I uninstall the app if I ever need to?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer-inner">
+              <p>Istiqamah follows standard Windows installation standards. You can uninstall it anytime by heading to <em>Windows Settings &gt; Apps &gt; Installed Apps</em>, searching for <strong>Istiqamah</strong>, and clicking <em>Uninstall</em>. It removes cleanly with no persistent background processes.</p>
+            </div>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- 10. FOOTER -->
+  <footer class="site-footer">
+    <div class="section-container footer-content">
+      
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-link">
+            <img src="assets/icon.png" alt="Istiqamah logo" class="brand-icon-img" width="28" height="28">
+            <span class="brand-name">Istiqamah</span>
+          </div>
+          <p class="footer-tagline">Consistency in every day.</p>
+          <span class="footer-arabic" lang="ar" dir="rtl" title="Istiqamah in Arabic calligraphy">استقامة</span>
+        </div>
+
+        <div class="footer-links-col">
+          <span class="footer-col-title">Navigation</span>
+          <a href="#hero">Overview</a>
+          <a href="#demo">Try Tracker</a>
+          <a href="#features">Features</a>
+          <a href="#themes">Themes</a>
+          <a href="#download">Download</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="footer-links-col">
+          <span class="footer-col-title">Product</span>
+          <span>Windows 10 & 11</span>
+          <span>Free & Ad-Free</span>
+          <!-- CHANGE THIS: Replace CONTACT_EMAIL_HERE with your support email address -->
+          <a href="mailto:CONTACT_EMAIL_HERE" class="footer-contact-link">Contact Support</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <!-- CHANGE THIS: Replace with your specific statement about data and internet use -->
+        <p class="footer-privacy">Your checklist and history are stored on your own computer.</p>
+        <p class="footer-copy">Made with care. • Consistency in every day.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
