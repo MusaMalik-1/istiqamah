@@ -468,7 +468,7 @@ const appState = {
   }
 };
 
-const CURRENT_VERSION = "1.2.1";
+const CURRENT_VERSION = "1.2.2";
 
 // Secure Storage Bridge
 const storageBridge = (typeof window !== 'undefined' && window.istiqamahAPI) ? window.istiqamahAPI : {
@@ -1546,6 +1546,103 @@ async function loadFriendsView() {
 
   // 2. Fetch friends list
   await refreshFriendsList();
+}
+
+function openEditNameModal() {
+  const modal = document.getElementById('modalEditNameOverlay');
+  const input = document.getElementById('inputEditDisplayName');
+  const errorMsg = document.getElementById('msgEditNameError');
+  if (!modal || !input) return;
+
+  const current = (appState.profile && appState.profile.displayName && appState.profile.displayName !== 'You')
+    ? appState.profile.displayName
+    : '';
+
+  input.value = current;
+  if (errorMsg) {
+    errorMsg.style.display = 'none';
+    errorMsg.textContent = '';
+  }
+
+  modal.style.display = 'flex';
+  setTimeout(() => {
+    input.focus();
+    input.select();
+  }, 60);
+}
+
+function closeEditNameModal() {
+  const modal = document.getElementById('modalEditNameOverlay');
+  if (modal) modal.style.display = 'none';
+}
+
+async function handleSaveDisplayName() {
+  const input = document.getElementById('inputEditDisplayName');
+  const errorMsg = document.getElementById('msgEditNameError');
+  const saveBtn = document.getElementById('btnSaveDisplayNameSubmit');
+  if (!input) return;
+
+  const newName = input.value.trim();
+  if (!newName) {
+    if (errorMsg) {
+      errorMsg.textContent = 'Please enter a name.';
+      errorMsg.style.display = 'block';
+    }
+    input.focus();
+    return;
+  }
+
+  if (newName.length > 24) {
+    if (errorMsg) {
+      errorMsg.textContent = 'Name must be 24 characters or less.';
+      errorMsg.style.display = 'block';
+    }
+    return;
+  }
+
+  try {
+    if (saveBtn) {
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+    }
+
+    // Update in-memory profile
+    if (!appState.profile) {
+      appState.profile = { displayName: newName };
+    } else {
+      appState.profile.displayName = newName;
+    }
+
+    // Update local UI
+    const nameEl = document.getElementById('userDisplayNameText');
+    if (nameEl) nameEl.textContent = newName;
+
+    // Sync to Supabase cloud if available
+    if (window.friendsAPI) {
+      const res = await window.friendsAPI.registerProfile({
+        existingProfile: appState.profile,
+        displayName: newName
+      });
+      if (res && res.success && res.profile) {
+        appState.profile = res.profile;
+      }
+    }
+
+    scheduleSave();
+    syncProgressToCloud();
+    closeEditNameModal();
+  } catch (err) {
+    console.error('Error saving display name:', err);
+    if (errorMsg) {
+      errorMsg.textContent = 'Could not save name. Please try again.';
+      errorMsg.style.display = 'block';
+    }
+  } finally {
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Save Name';
+    }
+  }
 }
 
 async function refreshFriendsList() {
@@ -2737,23 +2834,17 @@ function setupEventListeners() {
     }
   });
 
-  // Friends: Edit Name
-  document.getElementById('btnEditDisplayName')?.addEventListener('click', async () => {
-    const currentName = appState.profile?.displayName || 'You';
-    const newName = prompt('Enter your display name for friends:', currentName);
-    if (newName && newName.trim() && newName.trim() !== currentName) {
-      if (window.friendsAPI) {
-        const res = await window.friendsAPI.registerProfile({
-          existingProfile: appState.profile,
-          displayName: newName.trim()
-        });
-        if (res.success) {
-          appState.profile = res.profile;
-          scheduleSave();
-          loadFriendsView();
-        }
-      }
-    }
+  // Friends: Edit Name Modal Listeners
+  document.getElementById('btnEditDisplayName')?.addEventListener('click', openEditNameModal);
+  document.getElementById('userDisplayNameText')?.addEventListener('click', openEditNameModal);
+  document.getElementById('btnCloseEditNameModal')?.addEventListener('click', closeEditNameModal);
+  document.getElementById('btnCancelEditNameModal')?.addEventListener('click', closeEditNameModal);
+  document.getElementById('formEditName')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    handleSaveDisplayName();
+  });
+  document.getElementById('modalEditNameOverlay')?.addEventListener('click', (e) => {
+    if (e.target.id === 'modalEditNameOverlay') closeEditNameModal();
   });
 
   // Friends: Add Friend by Code

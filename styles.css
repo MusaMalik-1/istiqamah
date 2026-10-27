@@ -1625,6 +1625,7 @@ body {
   gap: var(--space-3);
 }
 
+.btn-primary,
 .btn-primary-purple {
   background: var(--accent-purple);
   color: #ffffff;
@@ -1638,6 +1639,7 @@ body {
   transition: all var(--transition-fast);
 }
 
+.btn-primary:hover,
 .btn-primary-purple:hover {
   box-shadow: 0 0 16px var(--accent-glow);
   transform: translateY(-1px);
@@ -1688,6 +1690,12 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-main);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.profile-display-name:hover {
+  color: var(--accent-light);
 }
 
 .btn-edit-name {

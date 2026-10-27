@@ -22,13 +22,14 @@ function generateFriendCode() {
 async function registerOrGetProfile(existingProfile, displayName) {
   try {
     if (existingProfile && existingProfile.id && existingProfile.friendCode) {
-      // Update display name if changed
-      if (displayName && displayName.trim() && displayName !== existingProfile.displayName) {
+      // Update display name if provided
+      if (displayName && displayName.trim()) {
+        const trimmed = displayName.trim();
         await supabase
           .from('profiles')
-          .update({ display_name: displayName.trim(), updated_at: new Date().toISOString() })
+          .update({ display_name: trimmed, updated_at: new Date().toISOString() })
           .eq('id', existingProfile.id);
-        existingProfile.displayName = displayName.trim();
+        existingProfile.displayName = trimmed;
       }
       return { success: true, profile: existingProfile };
     }

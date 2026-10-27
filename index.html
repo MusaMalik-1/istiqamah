@@ -827,7 +827,7 @@
       <div class="modal-header">
         <div class="whatsnew-header-title">
           <h3 class="modal-title">What's New in Istiqamah</h3>
-          <span class="whatsnew-badge">v1.2.1</span>
+          <span class="whatsnew-badge">v1.2.2</span>
         </div>
         <button class="btn-modal-close" id="btnCloseWhatsNewModal" title="Close">
           <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -835,6 +835,19 @@
       </div>
 
       <div class="whatsnew-list">
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Custom Display Name Editor</span>
+            <span class="whatsnew-item-desc">Easily set and change your name in Friends & Accountability so your friends recognize you on the leaderboard.</span>
+          </div>
+        </div>
+
         <div class="whatsnew-item">
           <div class="whatsnew-item-icon">
             <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -885,6 +898,47 @@
           Got it, let's go
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: EDIT DISPLAY NAME
+       =================================================================== -->
+  <div class="modal-overlay" id="modalEditNameOverlay" style="display: none;">
+    <div class="modal-card modal-card-sm" id="modalEditNameCard">
+      <div class="modal-header">
+        <h3 class="modal-title">Change Display Name</h3>
+        <button class="btn-modal-close" id="btnCloseEditNameModal" title="Close">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="formEditName" class="modal-form" onsubmit="return false;">
+        <div class="form-group">
+          <label class="form-label" for="inputEditDisplayName">Your Display Name</label>
+          <input
+            type="text"
+            id="inputEditDisplayName"
+            class="form-input"
+            maxlength="24"
+            placeholder="e.g. Moosa, Hamza, Zayn"
+            autocomplete="off"
+            required
+          />
+          <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
+            Visible to your friends on the leaderboard, streak tracker, and quiz scores.
+          </span>
+        </div>
+
+        <div id="msgEditNameError" class="friend-status-msg error" style="display: none; margin-bottom: 8px;"></div>
+
+        <div class="modal-footer" style="margin-top: 18px;">
+          <div class="modal-footer-right" style="width: 100%; justify-content: flex-end; gap: 8px;">
+            <button type="button" class="btn-subtle" id="btnCancelEditNameModal">Cancel</button>
+            <button type="submit" class="btn-primary" id="btnSaveDisplayNameSubmit">Save Name</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 
