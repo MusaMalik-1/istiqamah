@@ -3093,6 +3093,12 @@ function setupUpdaterUI() {
     if (desc) desc.textContent = 'Restart now to apply new features seamlessly.';
     if (restartBtn) restartBtn.style.display = 'inline-flex';
   });
+
+  window.updaterAPI.onUpdateError?.((err) => {
+    if (banner && desc) {
+      desc.textContent = 'Retrying update check in the background...';
+    }
+  });
 }
 
 // -----------------------------------------------------------------------------

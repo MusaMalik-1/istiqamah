@@ -137,6 +137,9 @@ function setupAutoUpdater() {
 
   autoUpdater.on('error', (err) => {
     console.warn('[AutoUpdater] Error during check/download:', err ? err.message : 'Unknown');
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('updater:error', err ? err.message : 'Update error');
+    }
   });
 
   // Only auto-check when packaged in production
