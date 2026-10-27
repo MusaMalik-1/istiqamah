@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+
+# Build artifacts & installers
+dist/
+
+# Test screenshots
+build/screenshot*
+build/screen.png
+
+# Temporary files & logs
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
