@@ -8,6 +8,7 @@
     "browser": "start index.html",
     "build": "electron-builder --win",
     "dist": "electron-builder --win nsis portable",
+    "release": "electron-builder --win nsis portable --publish always",
     "generate-icons": "electron scripts/generate-icons.js"
   },
   "keywords": [
