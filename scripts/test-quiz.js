@@ -8,6 +8,7 @@ let mockStorage = {
   streaks: { current: 3, best: 7 },
   profile: { id: "mock-user-1", displayName: "Moosa", friendCode: "IST-WPU4" },
   friendIds: ["mock-friend-1", "mock-friend-2"],
+  lastSeenVersion: "1.2.3",
   accountability: {},
   quiz: {
     history: {},
@@ -73,6 +74,8 @@ app.whenReady().then(async () => {
   // 1. Navigate to Quiz View
   const navRes = await win.webContents.executeJavaScript(`
     (() => {
+      const modal = document.getElementById('modalWhatsNewOverlay');
+      if (modal) modal.style.display = 'none';
       const btn = document.getElementById('navQuiz');
       if (!btn) return { error: 'navQuiz button not found' };
       btn.click();
@@ -135,7 +138,7 @@ app.whenReady().then(async () => {
         };
       })()
     `);
-    console.log(\`Q\${q + 1} Answered:\`, stepRes);
+    console.log(`Q${q + 1} Answered:`, stepRes);
 
     await new Promise(r => setTimeout(r, 200));
 

@@ -468,7 +468,7 @@ const appState = {
   }
 };
 
-const CURRENT_VERSION = "1.2.2";
+const CURRENT_VERSION = "1.2.3";
 
 // Secure Storage Bridge
 const storageBridge = (typeof window !== 'undefined' && window.istiqamahAPI) ? window.istiqamahAPI : {
@@ -1766,6 +1766,53 @@ let activeQuizSession = {
   isAnswered: false
 };
 
+// Randomize question options so the correct answer is completely distributed across options A, B, C, and D
+function prepareShuffledQuizSet(questions) {
+  // Balanced distribution of target slots: 0 (A), 1 (B), 2 (C), 3 (D)
+  const targetSlots = [0, 1, 2, 3];
+  for (let i = targetSlots.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = targetSlots[i];
+    targetSlots[i] = targetSlots[j];
+    targetSlots[j] = temp;
+  }
+  // Add a 5th random slot
+  targetSlots.push(Math.floor(Math.random() * 4));
+
+  return questions.map((rawQ, qIdx) => {
+    const originalCorrectIndex = typeof rawQ.correctIndex === 'number' ? rawQ.correctIndex : 0;
+    const correctAnswerText = rawQ.options[originalCorrectIndex];
+    const wrongOptions = rawQ.options.filter((_, idx) => idx !== originalCorrectIndex);
+
+    // Shuffle wrong options
+    for (let i = wrongOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = wrongOptions[i];
+      wrongOptions[i] = wrongOptions[j];
+      wrongOptions[j] = temp;
+    }
+
+    // Assign randomized slot
+    const targetSlot = targetSlots[qIdx % targetSlots.length];
+
+    const newOptions = [];
+    let wrongIdx = 0;
+    for (let slot = 0; slot < 4; slot++) {
+      if (slot === targetSlot) {
+        newOptions.push(correctAnswerText);
+      } else {
+        newOptions.push(wrongOptions[wrongIdx++]);
+      }
+    }
+
+    return {
+      ...rawQ,
+      options: newOptions,
+      correctIndex: targetSlot
+    };
+  });
+}
+
 function getTodayQuizSet() {
   const dateStr = appState.todayDateKey;
   let hash = 0;
@@ -1783,12 +1830,14 @@ function getTodayQuizSet() {
     pool[j] = temp;
   }
 
-  return pool.slice(0, 5);
+  const selectedFive = pool.slice(0, 5);
+  return prepareShuffledQuizSet(selectedFive);
 }
 
 function getRandomQuizSet(count = 5) {
   const shuffled = [...QUIZ_QUESTIONS].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count);
+  const selected = shuffled.slice(0, count);
+  return prepareShuffledQuizSet(selected);
 }
 
 function loadQuizView() {
