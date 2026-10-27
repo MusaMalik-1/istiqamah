@@ -25,8 +25,8 @@
             <path d="m9 12 2 2 4-4" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
             <defs>
               <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#c084fc" />
-                <stop offset="100%" stop-color="#8b5cf6" />
+                <stop offset="0%" stop-color="var(--accent-light)" />
+                <stop offset="100%" stop-color="var(--accent-purple)" />
               </linearGradient>
             </defs>
           </svg>
@@ -483,6 +483,21 @@
             </div>
           </div>
 
+          <!-- AESTHETIC ACCOUNTABILITY QUOTE -->
+          <div class="card accountability-quote-card" id="accountabilityQuoteCard">
+            <div class="quote-decorative-icon">
+              <svg class="quote-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+              </svg>
+            </div>
+            <div class="quote-content-wrap">
+              <p class="quote-arabic" id="quoteArabicText" dir="rtl">« حَاسِبُوا أَنْفُسَكُمْ قَبْلَ أَنْ تُحَاسَبُوا ، وَزِنُوا أَنْفُسَكُمْ قَبْلَ أَنْ تُوزَنُوا »</p>
+              <p class="quote-english" id="quoteEnglishText">"Take account of yourselves before you are taken to account, and weigh your actions before they are weighed against you."</p>
+              <span class="quote-source" id="quoteSourceText">— Sayyiduna Umar ibn Al-Khattab (رضي الله عنه)</span>
+            </div>
+          </div>
+
           <!-- SUB-VIEW: DAILY AUDIT -->
           <div class="accountability-subview active" id="subviewDailyAudit">
             <div class="card audit-banner-card">
@@ -617,7 +632,76 @@
           </div>
 
           <div class="settings-sections">
+            <!-- ACCENT THEME PICKER -->
             <div class="card settings-card">
+              <div class="setting-item" style="flex-direction: column; align-items: stretch; gap: 8px;">
+                <div class="setting-text">
+                  <span class="setting-name">Accent Color Theme</span>
+                  <span class="setting-desc">Choose an accent palette to personalize your entire Istiqamah workspace.</span>
+                </div>
+                <div class="theme-picker-grid" id="themePickerGrid">
+                  <button type="button" class="theme-choice-btn active" data-theme-id="purple">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Amethyst</span>
+                      <span class="theme-choice-desc">Purple & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="pink">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #f43f5e, #fb7185);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Rose</span>
+                      <span class="theme-choice-desc">Pink & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="green">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #10b981, #34d399);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Emerald</span>
+                      <span class="theme-choice-desc">Green & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="red">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #ef4444, #f87171);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Crimson</span>
+                      <span class="theme-choice-desc">Red & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="blue">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Ocean</span>
+                      <span class="theme-choice-desc">Blue & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="gold">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Sahara</span>
+                      <span class="theme-choice-desc">Gold & Black</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card settings-card">
+              <div class="setting-item">
+                <div class="setting-text">
+                  <span class="setting-name">Release Updates</span>
+                  <span class="setting-desc">View the latest improvements and new features in Istiqamah.</span>
+                </div>
+                <button class="btn-subtle" id="btnOpenWhatsNew">What's New</button>
+              </div>
+
+              <div class="setting-divider"></div>
+
               <div class="setting-item">
                 <div class="setting-text">
                   <span class="setting-name">Storage Location</span>
@@ -731,6 +815,75 @@
           <button type="button" class="btn-subtle" id="btnCancelResetModal">Cancel</button>
           <button type="button" class="btn-subtle danger" id="btnConfirmResetModal">Reset Everything</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: WHAT'S NEW / RECENT UPDATES
+       =================================================================== -->
+  <div class="modal-overlay" id="modalWhatsNewOverlay" style="display: none;">
+    <div class="modal-card modal-whatsnew-card" id="modalWhatsNewCard">
+      <div class="modal-header">
+        <div class="whatsnew-header-title">
+          <h3 class="modal-title">What's New in Istiqamah</h3>
+          <span class="whatsnew-badge">v1.2.1</span>
+        </div>
+        <button class="btn-modal-close" id="btnCloseWhatsNewModal" title="Close">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="whatsnew-list">
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m4.93 4.93 4.24 4.24"></path>
+              <path d="m14.83 9.17 4.24-4.24"></path>
+              <path d="m14.83 14.83 4.24 4.24"></path>
+              <path d="m9.17 14.83-4.24 4.24"></path>
+              <circle cx="12" cy="12" r="4"></circle>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Custom Accent Color Themes</span>
+            <span class="whatsnew-item-desc">Personalize your app with 6 handcrafted accent themes: Amethyst Purple, Rose Pink, Emerald Green, Crimson Red, Ocean Blue, and Sahara Gold. Accessible in Settings!</span>
+          </div>
+        </div>
+
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Aesthetic Accountability Header</span>
+            <span class="whatsnew-item-desc">An inspiring spiritual quote from Sayyiduna Umar ibn Al-Khattab (RA) on self-reckoning and daily audit now graces the Accountability tab.</span>
+          </div>
+        </div>
+
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Silent Background Auto-Updates</span>
+            <span class="whatsnew-item-desc">Updates are now downloaded automatically in the background directly from GitHub without needing manual reinstallers.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="margin-top: 18px;">
+        <button type="button" class="btn-primary" id="btnDismissWhatsNew" style="width: 100%; justify-content: center;">
+          Got it, let's go
+        </button>
       </div>
     </div>
   </div>

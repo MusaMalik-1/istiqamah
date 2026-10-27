@@ -458,6 +458,8 @@ const appState = {
   accountability: {}, // { 'YYYY-MM-DD': { date, answers: { q1: 2, ... }, score: 83, note: '...', updatedAt } }
   accountabilityActiveSubTab: "daily",
   accountabilityReportDate: null,
+  theme: "purple", // "purple" | "pink" | "green" | "red" | "blue" | "gold"
+  lastSeenVersion: "1.2.0",
   quiz: {
     history: {}, // Keyed by 'YYYY-MM-DD': { completed: true, score: 620, correctCount: 4, totalQuestions: 5, speedBonusTotal: 120, completedAt: '...' }
     streak: 0,
@@ -465,6 +467,8 @@ const appState = {
     totalPoints: 0
   }
 };
+
+const CURRENT_VERSION = "1.2.1";
 
 // Secure Storage Bridge
 const storageBridge = (typeof window !== 'undefined' && window.istiqamahAPI) ? window.istiqamahAPI : {
@@ -2885,6 +2889,30 @@ function setupEventListeners() {
     }
   });
 
+  // Accent Theme Picker Listeners
+  document.querySelectorAll('.theme-choice-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tid = btn.getAttribute('data-theme-id');
+      if (tid) applyTheme(tid, true);
+    });
+  });
+
+  // What's New Modal Listeners
+  document.getElementById('btnOpenWhatsNew')?.addEventListener('click', () => {
+    showWhatsNewModal();
+  });
+  document.getElementById('btnCloseWhatsNewModal')?.addEventListener('click', () => {
+    closeWhatsNewModal();
+  });
+  document.getElementById('btnDismissWhatsNew')?.addEventListener('click', () => {
+    closeWhatsNewModal();
+  });
+  document.getElementById('modalWhatsNewOverlay')?.addEventListener('click', (e) => {
+    if (e.target.id === 'modalWhatsNewOverlay') {
+      closeWhatsNewModal();
+    }
+  });
+
   // Setup In-App Auto-Updater Banner
   setupUpdaterUI();
 }
@@ -2974,6 +3002,8 @@ function scheduleSave() {
         streaks: appState.streaks,
         profile: appState.profile,
         friendIds: appState.friendIds,
+        theme: appState.theme || 'purple',
+        lastSeenVersion: appState.lastSeenVersion || CURRENT_VERSION,
         accountability: appState.accountability || {},
         quiz: appState.quiz || { history: {}, streak: 0, bestScore: 0, totalPoints: 0 },
         history: {
@@ -3033,6 +3063,14 @@ async function loadSavedState() {
       appState.friendIds = saved.friendIds;
     }
 
+    if (typeof saved.theme === 'string') {
+      appState.theme = saved.theme;
+    }
+
+    if (typeof saved.lastSeenVersion === 'string') {
+      appState.lastSeenVersion = saved.lastSeenVersion;
+    }
+
     if (saved.accountability && typeof saved.accountability === 'object') {
       appState.accountability = saved.accountability;
     } else {
@@ -3074,13 +3112,64 @@ async function loadSavedState() {
 }
 
 // -----------------------------------------------------------------------------
+// Themes & Release Updates Modal
+// -----------------------------------------------------------------------------
+function applyTheme(themeId, shouldSave = true) {
+  const validThemes = ['purple', 'pink', 'green', 'red', 'blue', 'gold'];
+  const theme = validThemes.includes(themeId) ? themeId : 'purple';
+  appState.theme = theme;
+
+  if (theme === 'purple') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+
+  document.querySelectorAll('.theme-choice-btn').forEach(btn => {
+    if (btn.getAttribute('data-theme-id') === theme) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  if (shouldSave) {
+    scheduleSave();
+  }
+}
+
+function checkWhatsNew() {
+  if (!appState.lastSeenVersion || appState.lastSeenVersion !== CURRENT_VERSION) {
+    showWhatsNewModal();
+  }
+}
+
+function showWhatsNewModal() {
+  const modal = document.getElementById('modalWhatsNewOverlay');
+  if (modal) {
+    modal.style.display = 'flex';
+  }
+}
+
+function closeWhatsNewModal() {
+  const modal = document.getElementById('modalWhatsNewOverlay');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+  appState.lastSeenVersion = CURRENT_VERSION;
+  scheduleSave();
+}
+
+// -----------------------------------------------------------------------------
 // App Initialization
 // -----------------------------------------------------------------------------
 async function initApp() {
   await loadSavedState();
+  applyTheme(appState.theme || 'purple', false);
   setupEventListeners();
   updateAllUI();
   switchView('today');
+  checkWhatsNew();
 
   // Check midnight reset every 15s
   setInterval(() => {

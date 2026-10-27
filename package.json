@@ -1,6 +1,6 @@
 {
   "name": "istiqamah",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Istiqamah - Consistency in every day",
   "main": "main.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "browser": "start index.html",
     "build": "electron-builder --win",
     "dist": "electron-builder --win nsis portable",
-    "release": "electron-builder --win nsis portable --publish always",
+    "release": "node scripts/publish-release.js",
     "generate-icons": "electron scripts/generate-icons.js"
   },
   "keywords": [
