@@ -2152,12 +2152,12 @@ button {
     padding: 10px 14px;
   }
 
-  .bento-card {
-    grid-column: span 6;
-  }
-
+  .bento-card,
+  .bento-card.bento-span-8,
+  .bento-card.bento-span-6,
+  .bento-card.bento-span-4,
   .bento-card.bento-wide {
-    grid-column: span 12;
+    grid-column: span 12 !important;
   }
 
   .theme-swatches-grid {
@@ -2178,56 +2178,256 @@ button {
 }
 
 @media (max-width: 640px) {
+  body {
+    font-size: 15px;
+  }
+
+  .section-container {
+    padding: 0 18px;
+  }
+
+  .site-header {
+    height: 64px;
+  }
+
   .nav-links {
     display: none;
   }
 
+  .brand-name {
+    font-size: 16px;
+  }
+
+  .btn-nav {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+
+  .hero-title {
+    font-size: 34px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-cta-group .btn-primary,
+  .hero-cta-group .btn-secondary {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
   .hero-mockup-wrapper {
     perspective: none;
+    margin-top: 8px;
   }
 
   .mockup-window {
     transform: none !important;
+    border-radius: var(--radius-md);
+  }
+
+  .mockup-main {
+    padding: 18px 16px;
+    gap: 16px;
+  }
+
+  .mockup-summary-card {
+    padding: 14px 16px;
+    gap: 14px;
+  }
+
+  /* Interactive Demo */
+  .interactive-demo-card {
+    padding: 22px 16px;
+    border-radius: var(--radius-lg);
+  }
+
+  .demo-card-top {
+    margin-bottom: 28px;
+    gap: 14px;
+  }
+
+  .prayer-timeline-wrapper {
+    margin: 20px 0 32px;
+    padding: 6px 0;
   }
 
   .prayer-track-line {
-    top: 28px;
+    top: 26px;
     left: 20px;
     right: 20px;
+    height: 2px;
   }
 
   .node-circle {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
   }
 
   .node-letter {
     font-size: 14px;
   }
 
+  .node-check {
+    width: 18px;
+    height: 18px;
+  }
+
   .prayer-name {
-    font-size: 13px;
+    font-size: 12px;
+    margin-top: 8px;
   }
 
   .prayer-time-sub {
     display: none;
   }
 
-  .bento-card {
-    grid-column: span 12;
+  .demo-feedback-box {
+    padding: 14px 16px;
+    font-size: 13px;
+    margin-bottom: 22px;
   }
 
+  .demo-feedback-text {
+    font-size: 13px;
+  }
+
+  .demo-voluntary-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 18px;
+  }
+
+  .voluntary-chips {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .v-chip {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  /* Bento Grid */
+  .bento-grid {
+    gap: 14px;
+  }
+
+  .bento-card,
+  .bento-card.bento-span-8,
+  .bento-card.bento-span-6,
+  .bento-card.bento-span-4,
+  .bento-card.bento-wide {
+    grid-column: span 12 !important;
+    padding: 24px 20px;
+  }
+
+  .cal-week-labels {
+    font-size: 9px;
+  }
+
+  .cal-grid-dots {
+    gap: 4px;
+  }
+
+  .cal-legend {
+    font-size: 10px;
+    gap: 10px;
+  }
+
+  /* Themes Section */
   .theme-swatches-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
+  .swatch-btn {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .swatch-circle {
+    width: 28px;
+    height: 28px;
+  }
+
+  .swatch-name {
+    font-size: 13px;
+  }
+
+  .swatch-desc {
+    display: none;
+  }
+
+  .swatch-status {
+    display: none;
+  }
+
+  /* Download Section */
+  .download-card {
+    padding: 36px 18px;
+  }
+
+  .download-title {
+    font-size: 28px;
+  }
+
+  .download-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .download-actions .btn-primary,
+  .download-actions .btn-secondary,
+  .download-actions .btn-disabled {
+    width: 100%;
+  }
+
+  /* Install Help & FAQ */
+  .help-card {
+    padding: 24px 18px;
+  }
+
+  .faq-summary {
+    padding: 16px 18px;
+    font-size: 15px;
+  }
+
+  .faq-answer-inner {
+    padding: 0 18px 18px;
+    font-size: 13px;
+  }
+
+  /* Footer */
   .footer-top {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
   }
 }
 

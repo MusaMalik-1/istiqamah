@@ -1,0 +1,71 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'android/**'
+      - 'index.html'
+      - 'styles.css'
+      - 'renderer.js'
+      - '.github/workflows/build-android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & Publish Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Sync Web Assets to Android
+        run: |
+          mkdir -p android/app/src/main/assets
+          cp index.html android/app/src/main/assets/
+          cp styles.css android/app/src/main/assets/
+          cp renderer.js android/app/src/main/assets/
+
+      - name: Build Android Release APK
+        run: |
+          cd android
+          gradle assembleRelease --no-daemon --stacktrace
+
+      - name: Prepare APK Asset
+        run: |
+          cp android/app/build/outputs/apk/release/app-release.apk Istiqamah.apk
+          cp Istiqamah.apk Istiqamah-1.2.3.apk
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Istiqamah-Android-APK
+          path: Istiqamah.apk
+          retention-days: 30
+
+      - name: Attach APK to GitHub Latest Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Checking for latest release to attach Istiqamah.apk..."
+          LATEST_TAG=$(gh release view --json tagName -q .tagName 2>/dev/null || echo "")
+          if [ -n "$LATEST_TAG" ]; then
+            echo "Uploading Istiqamah.apk to release $LATEST_TAG..."
+            gh release upload "$LATEST_TAG" Istiqamah.apk Istiqamah-1.2.3.apk --clobber || true
+          else
+            echo "No existing release found. Creating release v1.2.3..."
+            gh release create v1.2.3 Istiqamah.apk Istiqamah-1.2.3.apk --title "Istiqamah 1.2.3" --notes "Android APK & Windows Release" || true
+          fi

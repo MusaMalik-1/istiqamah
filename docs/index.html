@@ -20,9 +20,10 @@
   <meta name="twitter:description" content="A daily prayer and habit companion for Windows. Free. No ads. Consistency in every day.">
   <meta name="twitter:image" content="assets/icon.png">
 
-  <!-- Favicon -->
+  <!-- Favicon & PWA Manifest -->
   <link rel="icon" type="image/png" href="assets/icon.png">
   <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="manifest" href="manifest.json">
 
   <!-- Fonts: Plus Jakarta Sans for modern clean typography & Amiri for Arabic script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +74,7 @@
         
         <div class="hero-badge reveal">
           <span class="badge-dot" aria-hidden="true"></span>
-          <span>Free for Windows</span>
+          <span>Free for Windows & Android</span>
         </div>
 
         <h1 class="hero-title reveal">
@@ -81,12 +82,12 @@
         </h1>
 
         <p class="hero-sub reveal">
-          A calm daily prayer and habit companion for Windows. Built for quiet focus, daily reflection, and steady devotion.
+          A calm daily prayer and habit companion for Windows and Android. Built for quiet focus, daily reflection, and steady devotion.
         </p>
 
         <div class="hero-cta-group reveal">
-          <!-- CHANGE THIS: Replace DOWNLOAD_URL_WINDOWS_HERE with your real installer link -->
-          <a href="DOWNLOAD_URL_WINDOWS_HERE" class="btn-primary btn-large">
+          <!-- CHANGE THIS: Replace with your real Windows installer link -->
+          <a href="https://github.com/MusaMalik-1/istiqamah/releases/latest/download/Istiqamah-Setup-1.2.3.exe" class="btn-primary btn-large">
             <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
@@ -95,18 +96,20 @@
             <span>Download for Windows</span>
           </a>
 
-          <a href="#demo" class="btn-secondary btn-large">
-            <span>Try the tracker</span>
-            <svg class="btn-svg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="m9 18 6-6-6-6"></path>
+          <!-- CHANGE THIS: Replace with your real Android APK link -->
+          <a href="https://github.com/MusaMalik-1/istiqamah/releases/latest/download/Istiqamah.apk" class="btn-secondary btn-large">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+              <path d="M12 18h.01"/>
             </svg>
+            <span>Download Android APK</span>
           </a>
         </div>
 
         <p class="hero-meta reveal">
           <span>Free. No ads.</span>
           <span class="meta-dot" aria-hidden="true">•</span>
-          <span>Windows 10 & 11</span>
+          <span>Windows 10/11 & Android 8+</span>
         </p>
 
         <!-- Decorative Stylized CSS Mockup Window -->
@@ -709,8 +712,8 @@
           <p class="download-sub">A focused desktop environment with zero ads, subscriptions, or intrusive notifications.</p>
 
           <div class="download-actions">
-            <!-- CHANGE THIS: Replace DOWNLOAD_URL_WINDOWS_HERE with your real GitHub release link -->
-            <a href="DOWNLOAD_URL_WINDOWS_HERE" class="btn-primary btn-large btn-download-main">
+            <!-- CHANGE THIS: Replace with your real Windows release link -->
+            <a href="https://github.com/MusaMalik-1/istiqamah/releases/latest/download/Istiqamah-Setup-1.2.3.exe" class="btn-primary btn-large btn-download-main">
               <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
@@ -719,21 +722,29 @@
               <span>Download for Windows</span>
             </a>
 
+            <!-- CHANGE THIS: Replace with your real Android APK release link -->
+            <a href="https://github.com/MusaMalik-1/istiqamah/releases/latest/download/Istiqamah.apk" class="btn-secondary btn-large btn-download-android">
+              <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+                <path d="M12 18h.01"/>
+              </svg>
+              <span>Download Android APK</span>
+            </a>
+
             <button type="button" class="btn-disabled btn-large" disabled aria-disabled="true">
               <span>macOS: coming soon</span>
             </button>
           </div>
 
-          <!-- CHANGE THIS: Replace VERSION_HERE with your app version number (e.g. 1.2.3) -->
           <p class="download-meta-text">
-            Version VERSION_HERE • Windows 10 and 11 • Free
+            Version 1.2.3 • Windows 10/11 & Android 8+ • 100% Free
           </p>
         </div>
 
       </div>
     </section>
 
-    <!-- 8. INSTALLING HELP (SmartScreen) -->
+    <!-- 8. INSTALLING HELP (Windows & Android) -->
     <section class="install-help-section" id="install-help">
       <div class="section-container">
         
@@ -741,34 +752,34 @@
           <div class="help-card-header">
             <div class="help-icon-wrap" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                <path d="M9 17V7h4a3 3 0 0 1 0 6H9"></path>
+                <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+                <path d="M12 18h.01"/>
               </svg>
             </div>
             <div>
-              <span class="help-kicker">WINDOWS SMARTSCREEN NOTE</span>
-              <h3 class="help-title">First-time installation help</h3>
+              <span class="help-kicker">INSTALLATION GUIDANCE</span>
+              <h3 class="help-title">How to install on Android & Windows</h3>
             </div>
           </div>
 
           <p class="help-intro">
-            Because Istiqamah is a brand new, free, independent application, Windows may display a blue dialog stating <strong>"Windows protected your PC"</strong>. This is normal Microsoft behavior for new software that has not yet accumulated thousands of downloads.
+            Istiqamah is independent, open, and free. Here is how to install on either device in seconds:
           </p>
 
           <div class="help-steps-row">
             <div class="help-step-item">
               <span class="help-num">1</span>
               <div class="help-step-text">
-                <strong>Click "More info"</strong>
-                <p>On the blue SmartScreen window, click the small underline link labeled <em>More info</em>.</p>
+                <strong>Download the file</strong>
+                <p>On phone, tap <em>Download Android APK</em>. On PC, tap <em>Download for Windows</em>.</p>
               </div>
             </div>
 
             <div class="help-step-item">
               <span class="help-num">2</span>
               <div class="help-step-text">
-                <strong>Click "Run anyway"</strong>
-                <p>A second button will appear at the bottom right. Click <em>Run anyway</em> to begin setup.</p>
+                <strong>Tap Open & Install</strong>
+                <p>On Android, tap <em>Install</em> (if prompted, enable "Allow from this source"). On Windows, click <em>More info &gt; Run anyway</em>.</p>
               </div>
             </div>
 
@@ -776,7 +787,7 @@
               <span class="help-num">3</span>
               <div class="help-step-text">
                 <strong>Enjoy Istiqamah</strong>
-                <p>The installer completes in seconds. The prompt only appears once during initial installation.</p>
+                <p>The app opens instantly with your prayer tracker, habits, quiz, and friends leaderboard ready.</p>
               </div>
             </div>
           </div>
@@ -823,11 +834,11 @@
           <!-- FAQ 3: Mac / Phone -->
           <details class="faq-item" name="faq-group">
             <summary class="faq-summary">
-              <span class="faq-question">Does it work on Mac, Linux, or mobile?</span>
+              <span class="faq-question">Does it work on mobile phones?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </summary>
             <div class="faq-answer-inner">
-              <p>Istiqamah is currently optimized specifically for Windows 10 and 11 desktop and laptop computers. A native macOS build is planned for a future release.</p>
+              <p>Yes! Istiqamah is now fully available for Android phones as a direct lightweight APK install, alongside Windows 10 and 11 for PCs and laptops. A native macOS build is planned for a future release.</p>
             </div>
           </details>
 

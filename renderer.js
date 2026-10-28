@@ -491,6 +491,123 @@ const storageBridge = (typeof window !== 'undefined' && window.istiqamahAPI) ? w
   getDataFilePath: async () => "Local Browser Storage"
 };
 
+// Standalone Web & Mobile Fallback for Friends API (Supabase REST)
+if (typeof window !== 'undefined' && !window.friendsAPI) {
+  const SB_URL = 'https://roeljqvfkycwqtneqncy.supabase.co/rest/v1';
+  const SB_KEY = 'sb_publishable_sVJRx2WKyQ4edy0F4WRQNw_BQCJGOlI';
+  const sbHeaders = {
+    'apikey': SB_KEY,
+    'Authorization': `Bearer ${SB_KEY}`,
+    'Content-Type': 'application/json'
+  };
+
+  const genCode = () => {
+    const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+    let code = 'IST-';
+    for (let i = 0; i < 4; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+    return code;
+  };
+
+  window.friendsAPI = {
+    registerProfile: async ({ existingProfile, displayName }) => {
+      try {
+        if (existingProfile && existingProfile.id && existingProfile.friendCode) {
+          if (displayName && displayName.trim()) {
+            await fetch(`${SB_URL}/profiles?id=eq.${existingProfile.id}`, {
+              method: 'PATCH',
+              headers: sbHeaders,
+              body: JSON.stringify({ display_name: displayName.trim(), updated_at: new Date().toISOString() })
+            });
+            existingProfile.displayName = displayName.trim();
+          }
+          return { success: true, profile: existingProfile };
+        }
+        let code = genCode();
+        let name = displayName && displayName.trim() ? displayName.trim() : 'Friend';
+        const res = await fetch(`${SB_URL}/profiles`, {
+          method: 'POST',
+          headers: { ...sbHeaders, 'Prefer': 'return=representation' },
+          body: JSON.stringify({ friend_code: code, display_name: name })
+        });
+        const data = await res.json();
+        if (Array.isArray(data) && data[0]) {
+          return { success: true, profile: { id: data[0].id, friendCode: data[0].friend_code, displayName: data[0].display_name } };
+        }
+        return { success: false, error: 'Registration failed' };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+    },
+    syncProgress: async ({ profileId, stats, dateKey }) => {
+      if (!profileId) return { success: false, error: 'No profile ID' };
+      try {
+        const payload = {
+          profile_id: profileId,
+          date_key: dateKey,
+          percentage: stats.percentage || 0,
+          total_tasks: stats.totalTasks || 29,
+          completed_tasks: stats.totalCompleted || 0,
+          prayers_completed: stats.prayersCompleted || 0,
+          water_glasses: stats.waterGlasses || 0,
+          current_streak: stats.currentStreak || 0,
+          quiz_score: stats.quizScore || 0,
+          updated_at: new Date().toISOString()
+        };
+        const res = await fetch(`${SB_URL}/daily_progress`, {
+          method: 'POST',
+          headers: { ...sbHeaders, 'Prefer': 'resolution=merge-duplicates' },
+          body: JSON.stringify(payload)
+        });
+        return { success: res.ok };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+    },
+    lookupFriendCode: async ({ myProfileId, friendCode }) => {
+      if (!friendCode) return { success: false, error: 'Enter a friend code' };
+      try {
+        const code = friendCode.trim().toUpperCase();
+        const res = await fetch(`${SB_URL}/profiles?friend_code=eq.${code}`, {
+          method: 'GET',
+          headers: sbHeaders
+        });
+        const list = await res.json();
+        if (!Array.isArray(list) || list.length === 0) return { success: false, error: 'Friend not found' };
+        const found = list[0];
+        if (myProfileId && found.id === myProfileId) return { success: false, error: 'Cannot add yourself' };
+        return { success: true, friend: { id: found.id, friendCode: found.friend_code, displayName: found.display_name } };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+    },
+    fetchFriendsProgress: async ({ friendIds, dateKey }) => {
+      if (!Array.isArray(friendIds) || friendIds.length === 0) return { success: true, friends: [] };
+      try {
+        const idListStr = `(${friendIds.join(',')})`;
+        const [profRes, progRes] = await Promise.all([
+          fetch(`${SB_URL}/profiles?id=in.${idListStr}`, { headers: sbHeaders }),
+          fetch(`${SB_URL}/daily_progress?profile_id=in.${idListStr}&date_key=eq.${dateKey}`, { headers: sbHeaders })
+        ]);
+        const profiles = await profRes.json();
+        const progresses = await progRes.json();
+        const progressMap = {};
+        if (Array.isArray(progresses)) {
+          progresses.forEach(p => { progressMap[p.profile_id] = p; });
+        }
+        const friends = Array.isArray(profiles) ? profiles.map(pr => ({
+          id: pr.id,
+          friendCode: pr.friend_code,
+          displayName: pr.display_name,
+          progress: progressMap[pr.id] || null
+        })) : [];
+        return { success: true, friends };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+    }
+  };
+}
+
 function getLocalDateString(d = new Date()) {
   const year = d.getFullYear();
   const month = String(d.getMonth() + 1).padStart(2, '0');

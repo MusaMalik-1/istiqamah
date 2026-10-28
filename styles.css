@@ -3464,3 +3464,186 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =============================================================================
+   MOBILE APP STYLES (Smartphones & Touch Devices)
+   Applies when screen width <= 768px (Phone view)
+   Leaves Desktop & Laptop view (width > 768px) 100% UNTOUCHED
+   ============================================================================= */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .app-shell {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* 1. Transform Fixed Left Sidebar into Mobile Bottom Navigation Bar */
+  .app-sidebar {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 64px !important;
+    background: rgba(11, 11, 16, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-right: none !important;
+    border-top: 1px solid var(--border-subtle) !important;
+    padding: 0 4px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    z-index: 1000 !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Hide desktop sidebar brand and category list in bottom nav */
+  .sidebar-brand,
+  .sidebar-divider,
+  .sidebar-categories {
+    display: none !important;
+  }
+
+  .sidebar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    gap: 2px !important;
+  }
+
+  .nav-item {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    padding: 6px 2px !important;
+    border-radius: 8px !important;
+    border-left: none !important;
+    background: transparent !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
+  }
+
+  .nav-item .lucide-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .nav-label {
+    font-size: 0.65rem !important;
+    font-weight: 500 !important;
+  }
+
+  .nav-item.active {
+    background: var(--accent-soft) !important;
+    color: var(--accent-light) !important;
+  }
+
+  /* 2. Main Container adjustments for mobile */
+  .app-main {
+    margin-left: 0 !important;
+    padding-bottom: 84px !important; /* Space for bottom nav */
+    width: 100% !important;
+  }
+
+  .main-container {
+    padding: 16px 14px !important;
+    max-width: 100% !important;
+  }
+
+  /* Header row on mobile */
+  .header-content-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .header-actions-group {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  /* 5-Prayers Row */
+  .prayer-tracker-card {
+    padding: 16px 14px !important;
+  }
+
+  .prayers-row {
+    gap: 8px !important;
+    overflow-x: auto !important;
+    padding-bottom: 6px !important;
+    scrollbar-width: none !important;
+  }
+
+  .prayers-row::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .prayer-node-btn {
+    min-width: 54px !important;
+  }
+
+  /* Modals */
+  .modal-dialog {
+    width: 94% !important;
+    max-width: 94% !important;
+    padding: 20px 16px !important;
+  }
+
+  /* Quiz lobby and active quiz */
+  .quiz-lobby-card,
+  .quiz-active-card {
+    padding: 20px 14px !important;
+  }
+
+  .quiz-options-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Friends card */
+  .friends-header-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: flex-start !important;
+  }
+
+  .friend-code-display {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .add-friend-input-row {
+    max-width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .add-friend-input-row .friend-input {
+    flex: 1 1 140px !important;
+    min-width: 120px !important;
+  }
+
+  .add-friend-input-row button {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    padding: 10px 14px !important;
+  }
+
+  /* History view heatmap */
+  .history-summary-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .history-calendar-card {
+    padding: 16px 12px !important;
+  }
+}

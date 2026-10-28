@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://roeljqvfkycwqtneqncy.supabase.co; connect-src 'self' https://roeljqvfkycwqtneqncy.supabase.co https://*.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data: https://fonts.gstatic.com;">
+  <title>Istiqamah</title>
+  <link rel="stylesheet" href="node_modules/@fontsource-variable/inter/index.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient Soft Radial Glow -->
+  <div class="top-ambient-glow"></div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- 1. Left Sidebar (Fixed 240px) -->
+    <aside class="app-sidebar">
+      <!-- App Brand -->
+      <div class="sidebar-brand">
+        <div class="brand-symbol">
+          <svg viewBox="0 0 24 24" class="brand-svg">
+            <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" fill="url(#brandGrad)" />
+            <path d="m9 12 2 2 4-4" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <defs>
+              <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="var(--accent-light)" />
+                <stop offset="100%" stop-color="var(--accent-purple)" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">Istiqamah</h1>
+          <p class="brand-tagline">Consistency in every day.</p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="today" id="navToday">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <span class="nav-label">Today</span>
+        </button>
+        <button class="nav-item" data-view="history" id="navHistory">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+          <span class="nav-label">History</span>
+        </button>
+        <button class="nav-item" data-view="friends" id="navFriends">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="nav-label">Friends</span>
+        </button>
+        <button class="nav-item" data-view="quiz" id="navQuiz">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
+          <span class="nav-label">Quiz</span>
+        </button>
+        <button class="nav-item" data-view="accountability" id="navAccountability">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+          <span class="nav-label">Accountability</span>
+        </button>
+        <button class="nav-item" data-view="settings" id="navSettings">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+          <span class="nav-label">Settings</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Hairline Divider -->
+      <div class="sidebar-divider"></div>
+
+      <!-- Categories Filter Section -->
+      <div class="sidebar-categories">
+        <div class="categories-heading-row">
+          <span class="sidebar-heading">Categories</span>
+          <div class="categories-heading-actions">
+            <button class="filter-reset-btn" id="btnSidebarAddHabit" title="Add custom habit">+</button>
+            <button class="filter-reset-btn" id="btnShowAllCategories" title="Show all categories">All</button>
+          </div>
+        </div>
+
+        <div class="categories-list" id="sidebarCategoriesList">
+          <!-- Dynamically populated categories with line icons and muted counts -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- 2. Main Content Area -->
+    <main class="app-main">
+      <div class="main-container">
+
+        <!-- Live In-App Update Banner (Auto-Updater) -->
+        <div class="update-banner" id="updateBanner" style="display: none;">
+          <div class="update-banner-left">
+            <svg class="lucide-icon update-pulse-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            <div class="update-banner-texts">
+              <span class="update-banner-title" id="updateBannerTitle">Update Available</span>
+              <span class="update-banner-desc" id="updateBannerDesc">Downloading in the background...</span>
+            </div>
+          </div>
+          <div class="update-banner-actions">
+            <button class="btn-primary-purple btn-sm" id="btnUpdateRestart" style="display: none;">Restart to Update</button>
+            <button class="btn-subtle btn-sm" id="btnDismissUpdate">Dismiss</button>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW: TODAY
+             =================================================================== -->
+        <section class="page-view active" id="viewToday">
+
+          <!-- Top Row: Greeting, Date & Streak Indicator -->
+          <div class="today-top-bar">
+            <div class="top-bar-left">
+              <h2 class="greeting-heading" id="greetingHeading">Good evening</h2>
+              <span class="date-subline" id="todayDateSubline">Monday, October 26, 2026</span>
+            </div>
+
+            <div class="top-bar-right">
+              <button class="btn-top-add-habit" id="btnOpenAddHabit" title="Add a custom habit">
+                <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                <span>Add Habit</span>
+              </button>
+              <div class="streak-pill" id="streakPill" title="Consecutive days where all required habits were completed">
+                <svg class="lucide-icon flame-icon" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></svg>
+                <span class="streak-number" id="streakCountText">0</span>
+                <span class="streak-text">day streak</span>
+              </div>
+              <span class="best-streak-sub" id="bestStreakSubText">Best: 0 days</span>
+            </div>
+          </div>
+
+          <!-- Hero Card: Progress Ring & Calm Feedback -->
+          <div class="hero-card">
+            <!-- Left: Animated SVG Progress Ring -->
+            <div class="hero-ring-side">
+              <div class="ring-wrap">
+                <svg class="hero-svg-ring" viewBox="0 0 120 120">
+                  <circle class="ring-track" cx="60" cy="60" r="48"></circle>
+                  <circle class="ring-progress" id="heroRingProgress" cx="60" cy="60" r="48"></circle>
+                  <defs>
+                    <linearGradient id="ringStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#8b5cf6" />
+                      <stop offset="100%" stop-color="#a78bfa" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="ring-center-content">
+                  <span class="ring-pct-number" id="heroRingPercent">0%</span>
+                  <span class="ring-pct-caption">Completed</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Short Calm Feedback Message -->
+            <div class="hero-feedback-side">
+              <h3 class="feedback-title" id="feedbackTitleText">A fresh start today.</h3>
+              <p class="feedback-subline" id="feedbackSublineText">0 of 29 completed • 14 required habits remaining</p>
+            </div>
+          </div>
+
+          <!-- Signature Prayer Tracker -->
+          <div class="prayer-signature-card" id="prayerSignatureCard">
+            <div class="signature-header">
+              <span class="card-kicker">Five Daily Prayers</span>
+              <span class="prayer-score-label" id="prayerScoreText">0 of 5 done</span>
+            </div>
+
+            <!-- 5 Round Nodes Row connected by hairline track -->
+            <div class="prayer-nodes-track-wrap">
+              <div class="nodes-connecting-line"></div>
+              <div class="prayer-nodes-row" id="prayerNodesRow">
+                <!-- 5 Main Prayer Nodes injected by renderer.js -->
+              </div>
+            </div>
+
+            <!-- Extra Prayers Secondary Chips -->
+            <div class="extra-prayers-row" id="extraPrayersRow">
+              <!-- Sunnah, Witr, Tahajjud, Duha chips injected by renderer.js -->
+            </div>
+          </div>
+
+          <!-- Filter Category Active Banner (Visible when filtered) -->
+          <div class="active-category-banner" id="activeCategoryBanner" style="display: none;">
+            <span class="banner-label" id="activeCategoryBannerText">Showing Prayers</span>
+            <button class="banner-clear-btn" id="btnClearCategoryFilter">Show all</button>
+          </div>
+
+          <!-- Habit Categories Cards -->
+          <div class="categories-cards-container" id="categoriesCardsContainer">
+            <!-- Injected by renderer.js: ONE card per category, with uppercase label above it -->
+          </div>
+
+        </section>
+
+        <!-- ===================================================================
+             VIEW: HISTORY
+             =================================================================== -->
+        <section class="page-view" id="viewHistory">
+          <div class="view-header">
+            <h2 class="view-title">History</h2>
+            <p class="view-sub">Review your consistency and completed habits over time.</p>
+          </div>
+
+          <div class="card history-card">
+            <div class="history-calendar-header">
+              <span class="history-month-name" id="historyMonthName">This Month</span>
+              <div class="history-legend">
+                <span class="legend-box empty"></span><span class="legend-label">None</span>
+                <span class="legend-box partial"></span><span class="legend-label">Partial</span>
+                <span class="legend-box complete"></span><span class="legend-label">Complete</span>
+              </div>
+            </div>
+
+            <div class="calendar-weekdays-row">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+
+            <div class="calendar-days-grid" id="calendarDaysGrid">
+              <!-- Calendar day cells injected by renderer.js -->
+            </div>
+
+            <!-- Day Detail Inspector -->
+            <div class="history-day-details" id="historyDayDetails">
+              <div class="day-details-empty">Click any past date above to view completed habits.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             VIEW: FRIENDS
+             =================================================================== -->
+        <section class="page-view" id="viewFriends">
+          <div class="view-header">
+            <h2 class="view-title">Friends &amp; Accountability</h2>
+            <p class="view-sub">Share your consistency with friends and motivate each other.</p>
+          </div>
+
+          <!-- 1. My Profile & Friend Code Card -->
+          <div class="card profile-card">
+            <div class="profile-card-left">
+              <div class="profile-avatar-circle">
+                <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="profile-info-wrap">
+                <div class="profile-name-row">
+                  <span class="profile-display-name" id="userDisplayNameText">You</span>
+                  <button class="btn-subtle btn-edit-name" id="btnEditDisplayName" title="Change your display name">Edit Name</button>
+                </div>
+                <div class="profile-code-row">
+                  <span class="code-label">Your Friend Code:</span>
+                  <span class="code-badge" id="userFriendCodeText">Loading...</span>
+                  <button class="btn-copy-code" id="btnCopyFriendCode" title="Copy your code to clipboard">
+                    <svg class="lucide-icon copy-icon" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <span id="btnCopyFriendCodeText">Copy</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Add Friend Card -->
+          <div class="card add-friend-card">
+            <div class="add-friend-header">
+              <span class="card-kicker">Add a Friend</span>
+              <span class="add-friend-tip">Enter their 6-character Friend Code (e.g. IST-4829)</span>
+            </div>
+            <div class="add-friend-input-row">
+              <input type="text" class="form-input friend-input" id="inputFriendCode" placeholder="Enter Friend Code" maxlength="10" autocomplete="off" />
+              <button class="btn-primary-purple" id="btnAddFriendSubmit">Add Friend</button>
+            </div>
+            <div class="friend-status-msg" id="msgFriendStatus" style="display: none;"></div>
+          </div>
+
+          <!-- 3. Friends Daily Progress Leaderboard -->
+          <div class="friends-section-header">
+            <span class="card-kicker">Friends Progress</span>
+            <button class="filter-reset-btn" id="btnRefreshFriends" title="Refresh friends' progress">Refresh</button>
+          </div>
+
+          <div class="friends-list-container" id="friendsListContainer">
+            <!-- Populated dynamically by renderer.js -->
+            <div class="friends-empty-state" id="friendsEmptyState">
+              <p class="empty-title">No friends added yet.</p>
+              <p class="empty-sub">Share your Friend Code with friends so you can keep each other accountable and see each other's streaks!</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             VIEW: QUIZ (Hikmah Challenge & Friend Standings)
+             =================================================================== -->
+        <section class="page-view" id="viewQuiz">
+          <div class="view-header">
+            <div class="view-header-left">
+              <h2 class="view-title">Hikmah Quiz</h2>
+              <p class="view-sub">Daily timed Islamic knowledge challenges and friendly competitions.</p>
+            </div>
+            <div class="quiz-header-badge" id="quizStreakBadge">
+              <svg class="lucide-icon flame-icon" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></svg>
+              <span id="quizStreakText">0 Day Quiz Streak</span>
+            </div>
+          </div>
+
+          <!-- 1. LOBBY STATE -->
+          <div class="quiz-subview" id="quizLobbyView">
+            <!-- Daily Challenge Hero Card -->
+            <div class="card quiz-hero-card">
+              <div class="quiz-hero-left">
+                <div class="quiz-kicker-row">
+                  <span class="card-kicker">Daily Challenge</span>
+                  <span class="quiz-status-pill" id="quizDailyStatusPill">Available Today</span>
+                </div>
+                <h3 class="quiz-hero-heading" id="quizHeroHeading">Today's 5-Question Challenge</h3>
+                <p class="quiz-hero-desc">15 seconds per question. Points awarded for correctness plus speed bonus. Compete against your friends today!</p>
+                <div class="quiz-hero-actions">
+                  <button class="btn-primary-purple btn-large" id="btnStartDailyQuiz">
+                    <svg class="lucide-icon" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                    <span id="btnStartDailyQuizText">Start Daily Challenge</span>
+                  </button>
+                  <button class="btn-subtle" id="btnStartPracticeQuiz">Practice Mode</button>
+                </div>
+              </div>
+
+              <div class="quiz-hero-right">
+                <div class="quiz-stat-circle" id="quizScoreCircleDisplay">
+                  <span class="quiz-stat-number" id="quizTodayScoreVal">--</span>
+                  <span class="quiz-stat-label">today's pts</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quiz Stats Grid -->
+            <div class="quiz-stats-grid">
+              <div class="card quiz-stat-card">
+                <span class="quiz-stat-kicker">Best Daily Score</span>
+                <span class="quiz-stat-big" id="quizStatBestScore">0</span>
+                <span class="quiz-stat-sub">points</span>
+              </div>
+              <div class="card quiz-stat-card">
+                <span class="quiz-stat-kicker">Accuracy</span>
+                <span class="quiz-stat-big" id="quizStatAccuracy">0%</span>
+                <span class="quiz-stat-sub" id="quizStatAccuracySub">0 / 0 correct</span>
+              </div>
+              <div class="card quiz-stat-card">
+                <span class="quiz-stat-kicker">Current Streak</span>
+                <span class="quiz-stat-big highlight" id="quizStatStreak">0</span>
+                <span class="quiz-stat-sub">days</span>
+              </div>
+              <div class="card quiz-stat-card">
+                <span class="quiz-stat-kicker">Total Points</span>
+                <span class="quiz-stat-big" id="quizStatTotalPts">0</span>
+                <span class="quiz-stat-sub">all time</span>
+              </div>
+            </div>
+
+            <!-- Friends Quiz Standings Card -->
+            <div class="card quiz-standings-card">
+              <div class="quiz-standings-header">
+                <div>
+                  <span class="card-kicker">Friends Quiz Leaderboard</span>
+                  <p class="quiz-standings-sub">Today's scores among your circle of friends</p>
+                </div>
+                <button class="filter-reset-btn" id="btnRefreshQuizStandings">Refresh</button>
+              </div>
+
+              <div class="quiz-standings-list" id="quizStandingsList">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. ACTIVE QUIZ ARENA -->
+          <div class="quiz-subview" id="quizArenaView" style="display: none;">
+            <div class="card quiz-arena-card">
+              <!-- Arena Header -->
+              <div class="arena-top-row">
+                <div class="arena-progress-wrap">
+                  <span class="arena-q-num" id="arenaQNumber">Question 1 of 5</span>
+                  <span class="arena-q-cat" id="arenaQCategory">Quran &amp; Tafseer</span>
+                </div>
+                <div class="arena-score-wrap">
+                  <span class="arena-score-label">Points:</span>
+                  <span class="arena-score-val" id="arenaLiveScore">0</span>
+                </div>
+                <button class="btn-subtle btn-sm" id="btnQuitQuiz">Quit</button>
+              </div>
+
+              <!-- Animated Timer Bar -->
+              <div class="arena-timer-container">
+                <div class="arena-timer-track">
+                  <div class="arena-timer-bar" id="arenaTimerBar" style="width: 100%;"></div>
+                </div>
+                <div class="arena-timer-meta">
+                  <span class="arena-timer-text" id="arenaTimerSeconds">15s</span>
+                  <span class="arena-timer-hint">Speed bonus active</span>
+                </div>
+              </div>
+
+              <!-- Question Prompt -->
+              <div class="arena-question-body">
+                <h3 class="arena-question-text" id="arenaQuestionText">Loading question...</h3>
+              </div>
+
+              <!-- Options Grid -->
+              <div class="arena-options-grid" id="arenaOptionsGrid">
+                <!-- 4 Options populated dynamically -->
+              </div>
+
+              <!-- Post-Answer Wisdom Card -->
+              <div class="arena-wisdom-card" id="arenaWisdomCard" style="display: none;">
+                <div class="wisdom-header">
+                  <div class="wisdom-badge" id="wisdomOutcomeBadge">
+                    <svg class="lucide-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span id="wisdomOutcomeText">Correct!</span>
+                  </div>
+                  <span class="wisdom-pts" id="wisdomPointsEarned">+140 pts</span>
+                </div>
+                <p class="wisdom-text" id="wisdomExplanationText">Wisdom explanation goes here.</p>
+                <div class="wisdom-footer">
+                  <button class="btn-primary-purple" id="btnNextQuestion">Next Question →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. RESULTS STATE -->
+          <div class="quiz-subview" id="quizResultsView" style="display: none;">
+            <div class="card quiz-results-card">
+              <div class="results-trophy-wrap">
+                <div class="results-trophy-circle">
+                  <svg class="lucide-icon trophy-icon" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
+                </div>
+              </div>
+
+              <h3 class="results-title" id="resultsTitleText">Challenge Completed!</h3>
+              <p class="results-sub" id="resultsSubText">Your score has been synced to your friends leaderboard.</p>
+
+              <div class="results-score-big">
+                <span class="results-val" id="resultsScoreVal">0</span>
+                <span class="results-unit">points</span>
+              </div>
+
+              <div class="results-stats-row">
+                <div class="results-stat-box">
+                  <span class="box-label">Correct Answers</span>
+                  <span class="box-val" id="resultsAccuracyVal">0 / 5</span>
+                </div>
+                <div class="results-stat-box">
+                  <span class="box-label">Speed Bonus</span>
+                  <span class="box-val" id="resultsSpeedBonusVal">+0 pts</span>
+                </div>
+                <div class="results-stat-box">
+                  <span class="box-label">Quiz Streak</span>
+                  <span class="box-val highlight" id="resultsStreakVal">1 day</span>
+                </div>
+              </div>
+
+              <div class="results-actions">
+                <button class="btn-subtle" id="btnToggleReview">Review Answers</button>
+                <button class="btn-primary-purple" id="btnResultsBackToLobby">Back to Quiz Hub</button>
+              </div>
+
+              <!-- Collapsible Review List -->
+              <div class="results-review-list" id="resultsReviewList" style="display: none;">
+                <!-- Dynamically populated review of the 5 questions -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             VIEW: ACCOUNTABILITY (Muhasabah & Monthly Reports)
+             =================================================================== -->
+        <section class="page-view" id="viewAccountability">
+          <div class="view-header">
+            <div class="view-header-left">
+              <h2 class="view-title">Accountability</h2>
+              <p class="view-sub">Daily self-audit (Muhasabah) and automated monthly reflection reports.</p>
+            </div>
+            <div class="accountability-tabs-pills">
+              <button class="sub-tab-pill active" id="tabDailyAudit" data-tab="daily">Daily Audit</button>
+              <button class="sub-tab-pill" id="tabMonthlyReport" data-tab="monthly">Monthly Report</button>
+            </div>
+          </div>
+
+          <!-- AESTHETIC ACCOUNTABILITY QUOTE -->
+          <div class="card accountability-quote-card" id="accountabilityQuoteCard">
+            <div class="quote-decorative-icon">
+              <svg class="quote-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+              </svg>
+            </div>
+            <div class="quote-content-wrap">
+              <p class="quote-arabic" id="quoteArabicText" dir="rtl">« حَاسِبُوا أَنْفُسَكُمْ قَبْلَ أَنْ تُحَاسَبُوا ، وَزِنُوا أَنْفُسَكُمْ قَبْلَ أَنْ تُوزَنُوا »</p>
+              <p class="quote-english" id="quoteEnglishText">"Take account of yourselves before you are taken to account, and weigh your actions before they are weighed against you."</p>
+              <span class="quote-source" id="quoteSourceText">— Sayyiduna Umar ibn Al-Khattab (رضي الله عنه)</span>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW: DAILY AUDIT -->
+          <div class="accountability-subview active" id="subviewDailyAudit">
+            <div class="card audit-banner-card">
+              <div class="audit-banner-left">
+                <span class="card-kicker">Today's Self-Reckoning</span>
+                <span class="audit-date-badge" id="auditTodayDateBadge">Today</span>
+              </div>
+              <div class="audit-banner-score">
+                <div class="audit-score-circle" id="auditScoreCircle">
+                  <span class="audit-score-val" id="auditScoreVal">--</span>
+                  <span class="audit-score-unit">%</span>
+                </div>
+                <div class="audit-score-meta">
+                  <span class="audit-score-status" id="auditScoreStatus">Not completed yet</span>
+                  <span class="audit-score-sub" id="auditScoreSub">Review the 6 core areas below</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Questions List -->
+            <div class="audit-questions-list" id="auditQuestionsList">
+              <!-- Dynamically populated by renderer.js -->
+            </div>
+
+            <!-- Daily Reflection Note -->
+            <div class="card audit-note-card">
+              <div class="audit-note-header">
+                <span class="card-kicker">Daily Reflection &amp; Lesson</span>
+                <span class="audit-note-tip">What is one lesson from today, or what will you improve tomorrow?</span>
+              </div>
+              <textarea class="form-input audit-note-input" id="inputAuditNote" rows="3" placeholder="Write an honest reflection on your day..."></textarea>
+            </div>
+
+            <!-- Save Action Button -->
+            <div class="audit-actions-row">
+              <button class="btn-primary-purple" id="btnSaveAudit">
+                <svg class="lucide-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Save Today's Audit</span>
+              </button>
+              <span class="audit-save-status" id="auditSaveStatus" style="display: none;">Saved for today</span>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW: MONTHLY REPORT -->
+          <div class="accountability-subview" id="subviewMonthlyReport" style="display: none;">
+            <!-- Month Selector Bar -->
+            <div class="monthly-selector-bar">
+              <button class="btn-subtle" id="btnPrevMonthReport" title="Previous month">
+                <svg class="lucide-icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <span class="monthly-selector-title" id="monthlyReportTitle">October 2026</span>
+              <button class="btn-subtle" id="btnNextMonthReport" title="Next month">
+                <svg class="lucide-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+              <div class="monthly-selector-spacer"></div>
+              <button class="btn-subtle" id="btnCopyMonthlySummary" title="Copy text report">
+                <svg class="lucide-icon" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span id="copyMonthlySummaryText">Copy Summary</span>
+              </button>
+            </div>
+
+            <!-- Monthly KPIs -->
+            <div class="monthly-kpi-grid">
+              <div class="card kpi-card">
+                <span class="kpi-label">Days Audited</span>
+                <div class="kpi-value-row">
+                  <span class="kpi-val" id="kpiDaysAudited">0</span>
+                  <span class="kpi-sub" id="kpiDaysTotal">/ 31 days</span>
+                </div>
+                <div class="kpi-progress-track">
+                  <div class="kpi-progress-bar" id="kpiAuditRateBar" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="card kpi-card">
+                <span class="kpi-label">Accountability Index</span>
+                <div class="kpi-value-row">
+                  <span class="kpi-val" id="kpiAvgScore">0%</span>
+                  <span class="kpi-sub">avg score</span>
+                </div>
+                <span class="kpi-desc" id="kpiScoreVerdict">No audits recorded yet</span>
+              </div>
+
+              <div class="card kpi-card">
+                <span class="kpi-label">Strongest Focus</span>
+                <div class="kpi-value-row">
+                  <span class="kpi-val highlight" id="kpiTopCategory">--</span>
+                </div>
+                <span class="kpi-desc" id="kpiTopScore">--</span>
+              </div>
+
+              <div class="card kpi-card">
+                <span class="kpi-label">Area for Growth</span>
+                <div class="kpi-value-row">
+                  <span class="kpi-val growth" id="kpiGrowthCategory">--</span>
+                </div>
+                <span class="kpi-desc" id="kpiGrowthScore">--</span>
+              </div>
+            </div>
+
+            <!-- Category Breakdown Grid -->
+            <div class="card monthly-breakdown-card">
+              <div class="monthly-card-header">
+                <span class="card-kicker">Category Breakdown</span>
+                <span class="monthly-card-sub">Consistency across core accountability dimensions</span>
+              </div>
+              <div class="breakdown-list" id="monthlyBreakdownList">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Monthly Reflection Notes Log -->
+            <div class="card monthly-reflections-card">
+              <div class="monthly-card-header">
+                <span class="card-kicker">Monthly Reflection Journal</span>
+                <span class="monthly-card-sub">Daily notes and realizations logged this month</span>
+              </div>
+              <div class="reflections-list" id="monthlyReflectionsList">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             VIEW: SETTINGS
+             =================================================================== -->
+        <section class="page-view" id="viewSettings">
+          <div class="view-header">
+            <h2 class="view-title">Settings</h2>
+            <p class="view-sub">Preferences and data management.</p>
+          </div>
+
+          <div class="settings-sections">
+            <!-- ACCENT THEME PICKER -->
+            <div class="card settings-card">
+              <div class="setting-item" style="flex-direction: column; align-items: stretch; gap: 8px;">
+                <div class="setting-text">
+                  <span class="setting-name">Accent Color Theme</span>
+                  <span class="setting-desc">Choose an accent palette to personalize your entire Istiqamah workspace.</span>
+                </div>
+                <div class="theme-picker-grid" id="themePickerGrid">
+                  <button type="button" class="theme-choice-btn active" data-theme-id="purple">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Amethyst</span>
+                      <span class="theme-choice-desc">Purple & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="pink">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #f43f5e, #fb7185);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Rose</span>
+                      <span class="theme-choice-desc">Pink & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="green">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #10b981, #34d399);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Emerald</span>
+                      <span class="theme-choice-desc">Green & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="red">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #ef4444, #f87171);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Crimson</span>
+                      <span class="theme-choice-desc">Red & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="blue">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Ocean</span>
+                      <span class="theme-choice-desc">Blue & Black</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="theme-choice-btn" data-theme-id="gold">
+                    <span class="theme-swatch-circle" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);"></span>
+                    <div class="theme-choice-texts">
+                      <span class="theme-choice-name">Sahara</span>
+                      <span class="theme-choice-desc">Gold & Black</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card settings-card">
+              <div class="setting-item">
+                <div class="setting-text">
+                  <span class="setting-name">Release Updates</span>
+                  <span class="setting-desc">View the latest improvements and new features in Istiqamah.</span>
+                </div>
+                <button class="btn-subtle" id="btnOpenWhatsNew">What's New</button>
+              </div>
+
+              <div class="setting-divider"></div>
+
+              <div class="setting-item">
+                <div class="setting-text">
+                  <span class="setting-name">Storage Location</span>
+                  <span class="setting-desc" id="settingStoragePath">Local user data folder</span>
+                </div>
+              </div>
+
+              <div class="setting-divider"></div>
+
+              <div class="setting-item">
+                <div class="setting-text">
+                  <span class="setting-name">Clear Today's Checklist</span>
+                  <span class="setting-desc">Unchecks all tasks for today without altering your past history.</span>
+                </div>
+                <button class="btn-subtle" id="btnClearTodayChecklist">Clear Today</button>
+              </div>
+
+              <div class="setting-divider"></div>
+
+              <div class="setting-item">
+                <div class="setting-text">
+                  <span class="setting-name">Reset to Defaults</span>
+                  <span class="setting-desc">Resets all tasks and categories back to factory defaults.</span>
+                </div>
+                <button class="btn-subtle danger" id="btnResetToDefaults">Reset Defaults</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ===================================================================
+       MODAL: ADD / EDIT HABIT
+       =================================================================== -->
+  <div class="modal-overlay" id="modalTaskOverlay" style="display: none;">
+    <div class="modal-card" id="modalTaskCard">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTaskTitle">Add New Habit</h3>
+        <button class="btn-modal-close" id="btnCloseTaskModal" title="Close">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="formTaskModal" class="modal-form" onsubmit="return false;">
+        <input type="hidden" id="inputTaskId" value="" />
+
+        <div class="form-group">
+          <label class="form-label" for="inputTaskTitle">Habit Name</label>
+          <input type="text" class="form-input" id="inputTaskTitle" placeholder="e.g. Read Tafseer, 20-min exercise" required autocomplete="off" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="selectTaskCategory">Category</label>
+          <select class="form-select" id="selectTaskCategory">
+            <option value="prayers">Prayers</option>
+            <option value="quran">Quran &amp; Dhikr</option>
+            <option value="health">Health</option>
+            <option value="study">Study &amp; Work</option>
+            <option value="home">Home &amp; Personal</option>
+          </select>
+        </div>
+
+        <div class="form-group-checkbox">
+          <label class="checkbox-label" for="checkboxTaskRequired">
+            <input type="checkbox" id="checkboxTaskRequired" class="styled-checkbox" />
+            <div class="checkbox-custom-mark">
+              <svg class="checkbox-check-svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div class="checkbox-text-wrap">
+              <span class="checkbox-title">Required for daily streak</span>
+              <span class="checkbox-sub">If enabled, missing this habit pauses your streak</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="modal-footer">
+          <div class="modal-footer-left">
+            <button type="button" class="btn-subtle danger" id="btnDeleteTask" style="display: none;">Delete</button>
+          </div>
+          <div class="modal-footer-right">
+            <button type="button" class="btn-subtle" id="btnCancelTaskModal">Cancel</button>
+            <button type="button" class="btn-primary-purple" id="btnSaveTaskModal">Save Habit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: RESET CONFIRMATION
+       =================================================================== -->
+  <div class="modal-overlay" id="modalResetOverlay" style="display: none;">
+    <div class="modal-card modal-card-sm" id="modalResetCard">
+      <div class="modal-header">
+        <h3 class="modal-title">Reset to Defaults?</h3>
+        <button class="btn-modal-close" id="btnCloseResetModal" title="Close">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-body-text">
+        This will restore the original 29 habits, reset all categories, and clear your streak and completion history. This action cannot be undone.
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-footer-right" style="width: 100%; justify-content: flex-end;">
+          <button type="button" class="btn-subtle" id="btnCancelResetModal">Cancel</button>
+          <button type="button" class="btn-subtle danger" id="btnConfirmResetModal">Reset Everything</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: WHAT'S NEW / RECENT UPDATES
+       =================================================================== -->
+  <div class="modal-overlay" id="modalWhatsNewOverlay" style="display: none;">
+    <div class="modal-card modal-whatsnew-card" id="modalWhatsNewCard">
+      <div class="modal-header">
+        <div class="whatsnew-header-title">
+          <h3 class="modal-title">What's New in Istiqamah</h3>
+          <span class="whatsnew-badge">v1.2.3</span>
+        </div>
+        <button class="btn-modal-close" id="btnCloseWhatsNewModal" title="Close">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="whatsnew-list">
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m4.93 4.93 4.24 4.24"></path>
+              <path d="m14.83 9.17 4.24-4.24"></path>
+              <path d="m14.83 14.83 4.24 4.24"></path>
+              <path d="m9.17 14.83-4.24 4.24"></path>
+              <circle cx="12" cy="12" r="4"></circle>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Randomized Quiz Options</span>
+            <span class="whatsnew-item-desc">Answers in the Hikmah Quiz are now dynamically and evenly randomized across options A, B, C, and D with zero predictable pattern.</span>
+          </div>
+        </div>
+
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Custom Display Name Editor</span>
+            <span class="whatsnew-item-desc">Easily set and change your name in Friends & Accountability so your friends recognize you on the leaderboard.</span>
+          </div>
+        </div>
+
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m4.93 4.93 4.24 4.24"></path>
+              <path d="m14.83 9.17 4.24-4.24"></path>
+              <path d="m14.83 14.83 4.24 4.24"></path>
+              <path d="m9.17 14.83-4.24 4.24"></path>
+              <circle cx="12" cy="12" r="4"></circle>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Custom Accent Color Themes</span>
+            <span class="whatsnew-item-desc">Personalize your app with 6 handcrafted accent themes: Amethyst Purple, Rose Pink, Emerald Green, Crimson Red, Ocean Blue, and Sahara Gold. Accessible in Settings!</span>
+          </div>
+        </div>
+
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Aesthetic Accountability Header</span>
+            <span class="whatsnew-item-desc">An inspiring spiritual quote from Sayyiduna Umar ibn Al-Khattab (RA) on self-reckoning and daily audit now graces the Accountability tab.</span>
+          </div>
+        </div>
+
+        <div class="whatsnew-item">
+          <div class="whatsnew-item-icon">
+            <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </div>
+          <div class="whatsnew-item-text">
+            <span class="whatsnew-item-title">Silent Background Auto-Updates</span>
+            <span class="whatsnew-item-desc">Updates are now downloaded automatically in the background directly from GitHub without needing manual reinstallers.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="margin-top: 18px;">
+        <button type="button" class="btn-primary" id="btnDismissWhatsNew" style="width: 100%; justify-content: center;">
+          Got it, let's go
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: EDIT DISPLAY NAME
+       =================================================================== -->
+  <div class="modal-overlay" id="modalEditNameOverlay" style="display: none;">
+    <div class="modal-card modal-card-sm" id="modalEditNameCard">
+      <div class="modal-header">
+        <h3 class="modal-title">Change Display Name</h3>
+        <button class="btn-modal-close" id="btnCloseEditNameModal" title="Close">
+          <svg class="lucide-icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="formEditName" class="modal-form" onsubmit="return false;">
+        <div class="form-group">
+          <label class="form-label" for="inputEditDisplayName">Your Display Name</label>
+          <input
+            type="text"
+            id="inputEditDisplayName"
+            class="form-input"
+            maxlength="24"
+            placeholder="e.g. Moosa, Hamza, Zayn"
+            autocomplete="off"
+            required
+          />
+          <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
+            Visible to your friends on the leaderboard, streak tracker, and quiz scores.
+          </span>
+        </div>
+
+        <div id="msgEditNameError" class="friend-status-msg error" style="display: none; margin-bottom: 8px;"></div>
+
+        <div class="modal-footer" style="margin-top: 18px;">
+          <div class="modal-footer-right" style="width: 100%; justify-content: flex-end; gap: 8px;">
+            <button type="button" class="btn-subtle" id="btnCancelEditNameModal">Cancel</button>
+            <button type="submit" class="btn-primary" id="btnSaveDisplayNameSubmit">Save Name</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
