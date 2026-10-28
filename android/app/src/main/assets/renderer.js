@@ -3175,7 +3175,7 @@ function setupEventListeners() {
 }
 
 function setupUpdaterUI() {
-  if (typeof window === 'undefined' || !window.updaterAPI) return;
+  if (typeof window === 'undefined') return;
 
   const banner = document.getElementById('updateBanner');
   const title = document.getElementById('updateBannerTitle');
@@ -3185,37 +3185,96 @@ function setupUpdaterUI() {
 
   dismissBtn?.addEventListener('click', () => {
     if (banner) banner.style.display = 'none';
+    try { sessionStorage.setItem('dismissed_update', 'true'); } catch (e) {}
   });
 
-  restartBtn?.addEventListener('click', () => {
-    window.updaterAPI.installUpdate();
-  });
+  if (window.updaterAPI) {
+    // ---------------------------------------------------------
+    // WINDOWS DESKTOP (Electron Auto-Updater)
+    // ---------------------------------------------------------
+    restartBtn?.addEventListener('click', () => {
+      window.updaterAPI.installUpdate();
+    });
 
-  window.updaterAPI.onUpdateAvailable((info) => {
-    if (banner) banner.style.display = 'flex';
-    if (title) title.textContent = `Update v${info.version || ''} Available`;
-    if (desc) desc.textContent = 'Downloading update in the background...';
-    if (restartBtn) restartBtn.style.display = 'none';
-  });
+    window.updaterAPI.onUpdateAvailable((info) => {
+      if (banner) banner.style.display = 'flex';
+      if (title) title.textContent = `Update v${info.version || ''} Available`;
+      if (desc) desc.textContent = 'Downloading update in the background...';
+      if (restartBtn) restartBtn.style.display = 'none';
+    });
 
-  window.updaterAPI.onDownloadProgress((progress) => {
-    if (desc && progress) {
-      desc.textContent = `Downloading update: ${Math.round(progress.percent || 0)}%...`;
+    window.updaterAPI.onDownloadProgress((progress) => {
+      if (desc && progress) {
+        desc.textContent = `Downloading update: ${Math.round(progress.percent || 0)}%...`;
+      }
+    });
+
+    window.updaterAPI.onUpdateDownloaded((info) => {
+      if (banner) banner.style.display = 'flex';
+      if (title) title.textContent = `Update v${info.version || ''} Ready!`;
+      if (desc) desc.textContent = 'Restart now to apply new features seamlessly.';
+      if (restartBtn) {
+        restartBtn.textContent = 'Restart to Update';
+        restartBtn.style.display = 'inline-flex';
+      }
+    });
+
+    window.updaterAPI.onUpdateError?.((err) => {
+      if (banner && desc) {
+        desc.textContent = 'Retrying update check in the background...';
+      }
+    });
+  } else {
+    // ---------------------------------------------------------
+    // ANDROID PHONES & WEB (Automatic In-App Update Checker)
+    // ---------------------------------------------------------
+    checkMobileUpdate(banner, title, desc, restartBtn);
+  }
+}
+
+async function checkMobileUpdate(banner, title, desc, actionBtn) {
+  try {
+    if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('dismissed_update') === 'true') {
+      return;
     }
-  });
 
-  window.updaterAPI.onUpdateDownloaded((info) => {
-    if (banner) banner.style.display = 'flex';
-    if (title) title.textContent = `Update v${info.version || ''} Ready!`;
-    if (desc) desc.textContent = 'Restart now to apply new features seamlessly.';
-    if (restartBtn) restartBtn.style.display = 'inline-flex';
-  });
+    // Query GitHub API for the latest release tag
+    const res = await fetch('https://api.github.com/repos/MusaMalik-1/istiqamah/releases/latest');
+    if (!res.ok) return;
+    const release = await res.json();
+    const latestTag = (release.tag_name || '').replace(/^v/, '').trim();
+    if (!latestTag) return;
 
-  window.updaterAPI.onUpdateError?.((err) => {
-    if (banner && desc) {
-      desc.textContent = 'Retrying update check in the background...';
+    // Compare with current running version (e.g., CURRENT_VERSION = "1.2.3")
+    if (compareSemver(latestTag, CURRENT_VERSION) > 0) {
+      if (banner) banner.style.display = 'flex';
+      if (title) title.textContent = `Update v${latestTag} Available!`;
+      if (desc) desc.textContent = 'A new version is ready with improvements.';
+      if (actionBtn) {
+        actionBtn.textContent = 'Update Now';
+        actionBtn.style.display = 'inline-flex';
+        actionBtn.onclick = () => {
+          const apkAsset = release.assets && release.assets.find(a => a.name && a.name.endsWith('.apk'));
+          const downloadUrl = apkAsset ? apkAsset.browser_download_url : 'https://github.com/MusaMalik-1/istiqamah/releases/latest/download/Istiqamah.apk';
+          window.location.href = downloadUrl;
+        };
+      }
     }
-  });
+  } catch (err) {
+    console.warn('[Mobile Update Check] Offline or skipped:', err);
+  }
+}
+
+function compareSemver(v1, v2) {
+  const p1 = (v1 || '').split('.').map(n => parseInt(n, 10) || 0);
+  const p2 = (v2 || '').split('.').map(n => parseInt(n, 10) || 0);
+  for (let i = 0; i < Math.max(p1.length, p2.length); i++) {
+    const n1 = p1[i] || 0;
+    const n2 = p2[i] || 0;
+    if (n1 > n2) return 1;
+    if (n1 < n2) return -1;
+  }
+  return 0;
 }
 
 // -----------------------------------------------------------------------------

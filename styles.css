@@ -3646,4 +3646,17 @@ body {
   .history-calendar-card {
     padding: 16px 12px !important;
   }
+
+  /* In-app update banner mobile layout */
+  .update-banner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 12px 14px !important;
+  }
+
+  .update-banner-actions {
+    width: 100% !important;
+    justify-content: flex-end !important;
+  }
 }
